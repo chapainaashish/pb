@@ -1,0 +1,288 @@
+<!-- In templates/settings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        }
+        html,body{
+        display: grid;
+        height: 100%;
+        width: 100%;
+        place-items: center;
+        background: #f2f2f2;
+        /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
+        background-image: url('/static/paris.png');
+        background-size: cover;
+        background-position: center;
+        }
+        ::selection{
+        background: black;
+        color: #fff;
+        }
+        .wrapper{
+        width: 380px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+        }
+        .wrapper .title{
+        font-size: 35px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 100px;
+        color: #fff;
+        user-select: none;
+        border-radius: 15px 15px 0 0;
+        background: black;
+        }
+        .wrapper form{
+        padding: 10px 30px 50px 30px;
+        }
+        .wrapper form .field{
+        height: 50px;
+        width: 100%;
+        margin-top: 20px;
+        position: relative;
+        }
+        .wrapper form .field input{
+        height: 100%;
+        width: 100%;
+        outline: none;
+        font-size: 17px;
+        padding-left: 20px;
+        border: 1px solid lightgrey;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        }
+        .wrapper form .field input:focus,
+        form .field input:valid{
+        border-color: black;
+        }
+        .wrapper form .field label{
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        color: #999999;
+        font-weight: 400;
+        font-size: 17px;
+        pointer-events: none;
+        transform: translateY(-50%);
+        transition: all 0.3s ease;
+        }
+        form .field input:focus ~ label,
+        form .field input:valid ~ label{
+        top: 0%;
+        font-size: 16px;
+        color: black;
+        background: #fff;
+        transform: translateY(-50%);
+        }
+        form .content{
+        display: flex;
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        align-items: center;
+        justify-content: space-around;
+        }
+        form .content .checkbox{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+        form .content input{
+        width: 15px;
+        height: 15px;
+        background: red;
+        }
+        form .content label{
+        color: #262626;
+        user-select: none;
+        padding-left: 5px;
+        }
+        form .content .pass-link{
+        color: "";
+        }
+        form .field input[type="submit"]{
+        color: #fff;
+        border: none;
+        padding-left: 0;
+        margin-top: -10px;
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+        background: black;
+        transition: all 0.3s ease;
+        }
+        form .field input[type="submit"]:active{
+        transform: scale(0.95);
+        }
+        form .signup-link{
+        color: #262626;
+        margin-top: 20px;
+        text-align: center;
+        }
+        form .pass-link a,
+        form .signup-link a{
+        color: black;
+        text-decoration: none;
+        }
+        form .pass-link a:hover,
+        form .signup-link a:hover{
+        text-decoration: underline;
+        }
+        /* Style for error messages */
+        .error-message {
+            color: red;
+        }
+
+        /* Add this CSS to center and fix the flash messages at the bottom */
+        .flash-messages-container {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .flash-message {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        /* Style for success flash messages */
+        .flash-message.success {
+            color: green;
+        }
+
+        /* Style for error flash messages */
+        .flash-message.error {
+            color: red;
+        }
+        .forms-container {
+        display: flex;
+        justify-content: space-around; /* You can adjust this based on your preference */
+        }
+    </style>
+    <script>
+        function toggleSteps() {
+            var steps = document.getElementById("steps");
+            var button = document.getElementById("toggle-steps");
+    
+            if (steps.style.display === "none" || steps.style.display === "") {
+                steps.style.display = "block";
+                button.innerHTML = "Show Less";
+            } else {
+                steps.style.display = "none";
+                button.innerHTML = "Show More";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 style="color: black; font-weight: bold;">Settings</h1>
+
+    <div id="settings-container" style="display: flex; flex-direction: column; align-items: center;">
+        <h2 style="color: white; background-color: black;">Create Your Own SerpAPI Key</h2>
+        <div id="steps" style="display: none; text-align: left;">
+            <ol style="color: black; background-color: rgb(210, 7, 122); font-weight: bold;">
+                <li>Go to <a href="https://serpapi.com/users/sign_up" target="_blank">SerpAPI Register Page</a> and register for an account.</li>
+                <li>Check your email and confirm your email address.</li>
+                <li>Confirm your phone number as instructed.</li>
+                <li>Click on "Subscribe" or follow any additional steps to complete the registration.</li>
+                <li>Visit your SerpAPI profile after successful registration.</li>
+                <li>Copy your API key from the profile page.</li>
+                <li>Return to this page and paste the copied API key into the "Change API Key" field below.</li>
+                <li>Click the "Change API Key" button to save your new API key.</li>
+            </ol>
+        </div>
+        <button id="toggle-steps" onclick="toggleSteps()">Show More</button>
+    </div>
+
+    <!-- Your body content here -->
+    <div class="forms-container">
+        <div class="wrapper" style="background-color: blue;">
+            <div class="title">
+            Change Username
+            </div>
+            <form method="POST" action="{{ url_for('views.settings') }}">
+                <div class="field">
+                    <input type="text" name="new_username" required>
+                    <label for="new_username">New Username</label>
+                </div>
+                <div class="field">
+                    <input type="submit" name="change_username" value="Change Username">
+                </div>
+            </form>
+        </div>
+
+        <div class="wrapper">
+            <div class="title">
+            Change Password
+            </div>
+            <form method="POST" action="{{ url_for('views.settings') }}">
+                <div class="field">
+                    <input type="password" name="current_password" required>
+                    <label for="current_password">Current Password</label>
+                </div>
+
+                <div class="field">
+                    <input type="password" name="new_password" required>
+                    <label for="new_password">New Password</label>
+                </div>
+                <div class="field">
+                    <input type="submit" name="change_password" value="Change Password">
+                </div>
+            </form>
+        </div>
+
+        <div class="wrapper" style="background-color: red;">
+            <div class="title">
+            Change Api Key
+            </div>
+            <form method="POST" action="{{ url_for('views.settings') }}">
+                <div class="field">
+                    <input type="text" name="new_api_key" required>
+                    <label for="new_api_key">New API Key</label>
+                </div>
+                <div class="field">
+                    <input type="submit" name="change_api_key" value="Change Api Key">
+                </div>
+            </form>
+        </div>
+
+        <div class="flash-messages-container">
+            {% with messages = get_flashed_messages(category_filter=['success']) %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <p style="background-color: white;" class="flash-message success">{{ message }}</p>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            {% with messages = get_flashed_messages(category_filter=['error']) %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <p style="background-color: white;" class="flash-message error">{{ message }}</p>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    <p style="color: red; position: fixed; top: 10px; left: 10px;">
+        <a style="color: white;" href="{{ url_for('views.home') }}">Back to Home</a>
+    </p>
+</body>
+</html>

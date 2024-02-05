@@ -1,0 +1,10 @@
+google_search_results==2.4.2
+requests==2.31.0
+opencv-python==4.6.0.66
+numpy==1.24.1
+Werkzeug==2.3.6
+email-validator==2.1.0.post1
+Flask==2.3.2
+Flask-Login==0.6.3
+Flask-SQLAlchemy==3.1.1
+Flask-APScheduler==1.13.1
