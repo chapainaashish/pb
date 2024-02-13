@@ -8,3 +8,4 @@ Flask==2.3.2
 Flask-Login==0.6.3
 Flask-SQLAlchemy==3.1.1
 Flask-APScheduler==1.13.1
+gunicorn==21.2.0 
