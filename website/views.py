@@ -8,8 +8,9 @@ import requests
 from statistics import median
 from werkzeug.utils import secure_filename
 from werkzeug.security import check_password_hash, generate_password_hash
-import cv2
+import cv2, os
 import numpy as np
+import uuid
 
 views = Blueprint('views', __name__)
 
@@ -120,6 +121,16 @@ def calculate_median(google_lens_results):
         # Raise a custom exception for API key errors
         raise APIKeyError(str(e))
 
+def download_image(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        image_array = np.asarray(bytearray(response.content), dtype=np.uint8)
+        image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
+        return image
+    else:
+        print(f"Failed to download image from {url}")
+        return None
+
 #function that compares with cv2 if a given image is already uploaded by the same user
 def image_exist(image, images):
     """
@@ -132,12 +143,13 @@ def image_exist(image, images):
     Returns:
         bool: True if the image exists, False otherwise.
     """
-    a = cv2.imread(f'uploads/{image}')
-    print(f'uploads/{image}')
+    a = download_image(image)
     for im in images:
-        b = cv2.imread(f'uploads/{im.filename}')
-        if np.all(a == b):
-            return True
+        b = download_image(im.url)
+        # Compare images
+        if b is not None:
+            if np.array_equal(a, b):
+                return True
     return False
 
 @views.route('/', methods=['GET', 'POST'])
@@ -165,13 +177,16 @@ def home():
         try:
             if (not uses_our_key) or (current_user.api_key_uses > 0):
                 filename = secure_filename(file.filename)
+                unique_id = uuid.uuid4().hex
+                filename = f"{unique_id}_{filename}"
                 image_path = f'uploads/{filename}'
 
                 file.save(image_path)
 
                 imgbb_api_key = 'bfa49ab58a9b7bf8f799a1fb9745cd4f'
                 url = upload_image_to_imgbb(image_path, imgbb_api_key)
-
+                # Delete the temporary file now that we have the URL
+                os.remove(image_path)
                 api_key = current_user.api_key
 
                 google_lens_params = {
@@ -195,7 +210,7 @@ def home():
                 if median_value:
                     images = current_user.images
                     exist = False
-                    if image_exist(filename, images):
+                    if image_exist(url, images):
                         #flash('You have already uploaded this image. It will not be saved again.', category='info')
                         exist = True
                     else:

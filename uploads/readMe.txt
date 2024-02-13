@@ -1,0 +1,1 @@
+In this folder keeps temporary the images that users uploads, after the transformation to urls the images are deleted.
