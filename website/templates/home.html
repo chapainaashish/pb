@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,9 +35,11 @@
             border: 2px dashed black;
             background-color: white;
             padding: 40px;
-            width: 100%; /* Increased width */
+            width: 100%;
+            /* Increased width */
             box-sizing: border-box;
-            margin: 0 auto; /* Center the box horizontally */
+            margin: 0 auto;
+            /* Center the box horizontally */
         }
 
         label {
@@ -66,8 +69,10 @@
         }
 
         img {
-            width: 400px; /* Set your desired fixed width */
-            height: 300px; /* Set your desired fixed height */
+            width: 400px;
+            /* Set your desired fixed width */
+            height: 300px;
+            /* Set your desired fixed height */
             margin-top: 20px;
         }
 
@@ -84,13 +89,14 @@
         .window {
             display: none;
             position: relative;
-            background: linear-gradient(-135deg,white, #c850c0);
+            background: linear-gradient(-135deg, white, #c850c0);
             margin: 20px auto;
             padding: 20px;
             border: 1px solid black;
             border-radius: 5px;
             box-shadow: 0 0 5px black;
-            width: 50%;/*800px;*/
+            width: 50%;
+            /*800px;*/
         }
 
         .active {
@@ -118,6 +124,7 @@
         .menu a:hover {
             text-decoration: underline;
         }
+
         #logout-button {
             position: fixed;
             top: 10px;
@@ -134,7 +141,8 @@
             position: fixed;
             top: 10px;
             left: 10px;
-            width: 300px; /* Adjust as needed */
+            width: 300px;
+            /* Adjust as needed */
             padding: 10px;
             border-radius: 5px;
             z-index: 9999;
@@ -167,14 +175,16 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Align items vertically */
+            justify-content: space-between;
+            /* Align items vertically */
         }
 
         .image-card img {
             max-width: 100%;
             height: auto;
             display: block;
-            margin: auto; /* Center the image horizontally */
+            margin: auto;
+            /* Center the image horizontally */
         }
 
         .image-info {
@@ -185,11 +195,13 @@
         .image-info p {
             margin: 0;
         }
+
         .total-section {
             position: absolute;
             top: 10px;
             right: 10px;
         }
+
         .dropbtn {
             background-color: red;
             color: white;
@@ -217,7 +229,7 @@
             position: fixed;
             top: 50px;
             right: 10px;
-            
+
         }
 
         .dropdown-content a {
@@ -239,10 +251,12 @@
         .dropdown:hover .dropbtn {
             background-color: #14c31a;
         }
-        
+
         .logo {
-            width: 100px; /* Set the desired width for the logo */
-            height: 100px; /* Set the desired height for the logo */
+            width: 100px;
+            /* Set the desired width for the logo */
+            height: 100px;
+            /* Set the desired height for the logo */
         }
 
         /* Add this if you want to override the global width and height for all images */
@@ -252,37 +266,45 @@
         }
 
         .file-input {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
         }
 
         .chooseButtonContainer {
-        display: inline-block;
-        position: relative;
-        overflow: hidden;
-        margin: 0;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
         }
 
         .chooseButton {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        font-weight: bold;
-        color: #ffffff;
-        background-color: #0070e0; /* Adobe's blue color */
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #0070e0;
+            /* Adobe's blue color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .chooseButton:hover {
-        background-color: #005aa0; /* Darker shade on hover */
+            background-color: #005aa0;
+            /* Darker shade on hover */
+        }
+
+        .iconimg {
+            width: 30px;
+            display: block;
+            height: 30px;
         }
     </style>
     <script>
@@ -336,68 +358,75 @@
             var fileNameDisplay = document.getElementById('fileName');
 
             if (fileInput.files.length > 0) {
-            fileNameDisplay.textContent = fileInput.files[0].name;
-            fileNameDisplay.style.display = 'block';
-            fileNameDisplay.style.fontSize = '10px';
-            noFileMessage.style.display = 'none';
+                fileNameDisplay.textContent = fileInput.files[0].name;
+                fileNameDisplay.style.display = 'block';
+                fileNameDisplay.style.fontSize = '10px';
+                noFileMessage.style.display = 'none';
             } else {
-            fileNameDisplay.textContent = '';
-            fileNameDisplay.style.display = 'none';
-            noFileMessage.style.display = 'block';
+                fileNameDisplay.textContent = '';
+                fileNameDisplay.style.display = 'none';
+                noFileMessage.style.display = 'block';
             }
         }
 
     </script>
 </head>
+
 <body>
-    
+
     <div class="dropdown">
         <button class="dropbtn">{{ user.username }}</button>
         <div class="dropdown-content">
             <a href="#" onclick="settings(); return false;">Settings</a>
-          <a href="#" onclick="logout(); return false;">Logout</a>
+            <a href="#" onclick="logout(); return false;">Logout</a>
         </div>
-      </div>
+    </div>
     <!-- Flash messages -->
     <div class="flash-messages-container">
         {% with messages = get_flashed_messages(category_filter=['success']) %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <p style="background-color: white;" class="flash-message success">{{ message }}</p>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <p style="background-color: white;" class="flash-message success">{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
         {% endwith %}
         {% with messages = get_flashed_messages(category_filter=['error']) %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <p style="background-color: white;" class="flash-message error">{{ message }}</p>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <p style="background-color: white;" class="flash-message error">{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
         {% endwith %}
     </div>
     <div class="window active" id="home">
         <!-- Content for the home window -->
         {% if uses_our_key %}
-            <h1 style="color: red; font-size: 12px;">{{ message }}
-                <br>
-                Navigate to the settings to create your own key or click <a href="{{ url_for('views.settings') }}">here</a>
-            </h1>
+        <h1 style="color: red; font-size: 12px;">{{ message }}
+            <br>
+            Navigate to the settings to create your own key or click <a href="{{ url_for('views.settings') }}">here</a>
+        </h1>
         {% endif %}
         <img src="static/ResLogo.png" alt="Logo" class="logo">
         <!--<h1>Réserve Privé</h1>-->
-        
-        
+
+
         <div class="upload-container">
             <form method="POST" enctype="multipart/form-data" action="{{ url_for('views.home') }}">
                 <div class="upload-box" id="upload-box">
                     <p style="font-weight: bold;">Choose an image / Capture a photo (mobile users)</p>
+                    <!-- <img src=" /static/camera_icon.png" alt="Select a File" class="chooseButton iconimg"> -->
+
                     <label for="image" class="chooseButtonContainer">
-                        <input type="file" name="image" accept="image/*" capture="camera" required class="file-input" id="fileInput" onchange="updateFileName()">                      <button class="chooseButton">Select a File</button>
+                        <input type="file" name="image" accept="image/*" capture="camera" required class="file-input"
+                            id="fileInput" onchange="updateFileName()">
+                        <img src=" /static/camera_icon.png" alt="Select a File" class="chooseButton iconimg">
+                        <!-- <button class="chooseButton">Select a File</button> -->
                     </label>
+
                     <div id="fileName" class="file-name"></div>
                     <div style="font-size: 10px;" id="noFileMessage" class="no-file-message">No file is selected</div>
                 </div>
@@ -406,40 +435,40 @@
 
             <div class="result-container">
                 {% if median_value is defined and url is defined %}
-                    {% if median_value is not none and url is not none %}
+                {% if median_value is not none and url is not none %}
 
-                        {% if median_value is not none %}
-                            <div class="image-card">
-                                <img src="{{ url }}" alt="Uploaded Image">
-                                <div class="image-info">
-                                    <p style="font-size: 16px;">{{ title }}</p>
-                                    <hr>
-                                    <p style="font-size: 18px; font-weight: bold;">Estimate Price: {{ median_value }} €</p>
-                                    <hr>
-                                    <!--<p style="font-size: 14px;">Related Link: <a href="{{ link }}" target="_blank">click</a></p>-->
-                                    <a href="{{ link }}" target="_blank">Related product</a>
-                                </div>
-                                <p>Put on sale Links:</p>
-                                <a href="https://www.leboncoin.fr/" target="_blank">Leboncoin</a>
-                                <a href="https://www.ebay.fr/" target="_blank">ebay</a>
-                                <a href="https://www.rakuten.com/" target="_blank">Rakuten</a>
-                                <a href="https://www.vinted.com/" target="_blank">Vinted</a>
-                                <a href="https://www.vestiairecollective.com/" target="_blank">Vestiairecollective</a>
-                            </div>
-                        {% endif %}
-                    {% elif median_value is none and url is not none %}
-                        <!-- Handle case where no values are extracted -->
-                        <p>No values extracted. This will not saved.</p>
-                    {% else %}
-                        <!-- Display nothing if no values have been extracted -->
-                    {% endif %}
-                    {% if exist %}
-                        <div style="color: red;">You have already uploaded this image. It will not be saved again.</div>
-                    {% endif %}
-                {% elif error %}
-                    <p class="error">{{ error }}</p>
+                {% if median_value is not none %}
+                <div class="image-card">
+                    <img src="{{ url }}" alt="Uploaded Image">
+                    <div class="image-info">
+                        <p style="font-size: 16px;">{{ title }}</p>
+                        <hr>
+                        <p style="font-size: 18px; font-weight: bold;">Estimate Price: {{ median_value }} €</p>
+                        <hr>
+                        <!--<p style="font-size: 14px;">Related Link: <a href="{{ link }}" target="_blank">click</a></p>-->
+                        <a href="{{ link }}" target="_blank">Related product</a>
+                    </div>
+                    <p>Put on sale Links:</p>
+                    <a href="https://www.leboncoin.fr/" target="_blank">Leboncoin</a>
+                    <a href="https://www.ebay.fr/" target="_blank">ebay</a>
+                    <a href="https://www.rakuten.com/" target="_blank">Rakuten</a>
+                    <a href="https://www.vinted.com/" target="_blank">Vinted</a>
+                    <a href="https://www.vestiairecollective.com/" target="_blank">Vestiairecollective</a>
+                </div>
+                {% endif %}
+                {% elif median_value is none and url is not none %}
+                <!-- Handle case where no values are extracted -->
+                <p>No values extracted. This will not saved.</p>
                 {% else %}
-                    <!-- Display nothing if no values have been extracted -->
+                <!-- Display nothing if no values have been extracted -->
+                {% endif %}
+                {% if exist %}
+                <div style="color: red;">You have already uploaded this image. It will not be saved again.</div>
+                {% endif %}
+                {% elif error %}
+                <p class="error">{{ error }}</p>
+                {% else %}
+                <!-- Display nothing if no values have been extracted -->
                 {% endif %}
             </div>
 
@@ -447,34 +476,36 @@
     </div>
 
     <div class="window" id="history" style="width: 60%;">
+
         <body>
             <!-- Content for the browse history window -->
-            <h2>History</h2> 
+            <h2>History</h2>
 
             <div class="total-section">
                 <p style="font-weight: bold;">Total Value: {{ user.total }} €</p>
             </div>
             {% if not images %}
-                <p class="text-center">Your history is empty.</p> 
+            <p class="text-center">Your history is empty.</p>
             {% endif %}
             <!-- Add content specific to the history window -->
             <div class="image-grid">
                 {% if images %}
-                    {% for image in images %}
-                        <div class="image-card">
-                            <img src="{{ image.url }}" alt="Uploaded Image">
-                            <div class="image-info">
-                                <p style="font-size: 16px;">{{ image.title }}</p>
-                                <hr>
-                                <p style="font-size: 14px; font-weight: bold;">Estimate: {{ image.mean_value }} €</p>
-                                <hr>
-                                <!--<p style="font-size: 14px;">Related Link: <a href="{{ image.link }}" target="_blank">click</a></p>-->
-                                <a href="{{ image.link }}" target="_blank">Related product</a>
-                                <hr>
-                                <p style="font-size: 14px;">Date (UTC timezone): {{ image.date.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-                            </div>
-                        </div>
-                    {% endfor %}
+                {% for image in images %}
+                <div class="image-card">
+                    <img src="{{ image.url }}" alt="Uploaded Image">
+                    <div class="image-info">
+                        <p style="font-size: 16px;">{{ image.title }}</p>
+                        <hr>
+                        <p style="font-size: 14px; font-weight: bold;">Estimate: {{ image.mean_value }} €</p>
+                        <hr>
+                        <!--<p style="font-size: 14px;">Related Link: <a href="{{ image.link }}" target="_blank">click</a></p>-->
+                        <a href="{{ image.link }}" target="_blank">Related product</a>
+                        <hr>
+                        <p style="font-size: 14px;">Date (UTC timezone): {{ image.date.strftime('%Y-%m-%d %H:%M:%S') }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
                 {% endif %}
             </div>
             <!-- Add your other HTML content here -->
@@ -486,4 +517,5 @@
         <a href="#" onclick="showWindow('history'); return false;">Browse History</a>
     </div>
 </body>
+
 </html>
