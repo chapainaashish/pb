@@ -1,0 +1,243 @@
+{% extends 'base.html' %} {% load static %}
+
+<!-- Meta Keywords -->
+{% block description %} <meta name="description" content="{{ post.meta_description }} " />
+{% endblock description %}
+<!--  -->
+{% block keywords %} <meta name="keywords" content="{{ post.meta_keywords }} " />
+{% endblock keywords %}
+
+<!-- Open Graph Tags -->
+{% block opengraph %}
+{% if post.title %}
+<meta property="og:title" content="{{ post.title }}"> {% endif %}
+<meta property="og:url" content="{{ domain }}/{{ request.get_full_path }}">
+{% if post.body %}
+<meta property="og:description" content="{{ post.body|striptags|truncatechars:160 }}"> {% endif %}
+{% if post.cover %} 
+<meta property="og:image" content="{{ domain }}/{{ post.cover.url }}"> {% endif %}
+{% endblock opengraph %}
+
+<!-- Title -->
+{% block title %} {{ post.title }} {% endblock title %}
+
+<!-- Top Carousel -->
+{% block topcarousel %}
+<div class="mt-5"></div>
+{% endblock topcarousel %}
+
+{% block content %}
+<!-- Breadcrumb on Small Screen -->
+<nav class="d-block d-lg-none" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+  <ol class="breadcrumb" style="font-size: 13px">
+    <li class="breadcrumb-item">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+        ><i class="bi bi-house-fill"></i> Home</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      <a
+        href="{% url 'listpage' post.category.slug %}"
+        class="text-dark"
+        style="text-decoration: none"
+        >{{ post.category.name }}</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+  </ol>
+</nav>
+
+<!-- Post Detail -->
+<div class="row d-flex p-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <h6>
+    <span class="badge bg-dark"
+      ><a
+        href="{% url 'listpage' post.category.slug %}"
+        class="text-white"
+        style="text-decoration: none"
+        >{{ post.category.name }}</a
+      ></span
+    >
+  </h6>
+  <h1 class="fw-bold">{{ post.title }}</h1>
+  <div class="my-3">
+    {% if post.display_cover and post.cover %}
+    <img src="{{ post.cover.url }}" class="w-100 me-3 my-2" style="max-width: 500px; float: left" />
+    {% endif %}
+    <div class="url-content-style">
+      {{ post.body|safe }}
+    </div>
+  </div>
+</div>
+
+{% if post.display_list %}
+<!-- List Carousel on Small Screen -->
+<div class="d-block d-lg-none row d-flex mt-4">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      {% if post.carousel_title %}
+      <h5 class="fw-bold">{{ post.carousel_title }}</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      {% endif %}
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for post in list_carousel %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ post.get_absolute_url }}" style="text-decoration: none">
+                  {% if post.cover %}
+                  <img src="{{ post.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ post.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}
+
+{% block breadcrumb %}
+<!-- Breadcrumb on Large Screen -->
+<nav class="d-none d-lg-block" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+  <ol class="breadcrumb" style="font-size: 13px">
+    <li class="breadcrumb-item">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+        ><i class="bi bi-house-fill"></i> Home</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      <a
+        href="{% url 'listpage' post.category.slug %}"
+        class="text-dark"
+        style="text-decoration: none"
+        >{{ post.category.name }}</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+  </ol>
+</nav>
+{% endblock breadcrumb %}
+
+<!-- Sidebar -->
+{% block sidebar %} {% if post.sidebar %}
+<div class="row p-3 text-center mb-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ post.sidebar|safe }}</div>
+</div>
+{% elif post.sidebar == "" and default_sidebar != "" %}
+<div class="row p-3 text-center mb-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_sidebar|safe }}</div>
+</div>
+{% endif %} {% endblock sidebar %}
+
+<!-- Ad Manager -->
+{% block admanager %} {% if post.ad_manager %}
+<div class="row p-3 text-center" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ post.ad_manager|safe }}</div>
+</div>
+{% elif post.ad_manager == "" and default_ad_manager != "" %}
+<div class="row p-3 text-center" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_ad_manager|safe }}</div>
+</div>
+{% endif %} {% endblock admanager %}
+
+{% block list_carousel %} {% if post.display_list %}
+<!-- List Carousel on Large Screen -->
+<div class="d-none d-lg-block row d-flex">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      {% if post.carousel_title %}
+      <h5 class="fw-bold">{{ post.carousel_title }}</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      {% endif %}
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for post in list_carousel %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ post.get_absolute_url }}" style="text-decoration: none">
+                  {% if post.cover %}
+                  <img src="{{ post.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ post.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock list_carousel %}
+
+<!-- Billboards -->
+{% block billboards %} {% if post.display_billboard %}
+<div class="row pt-4">
+  {% for billboard in billboards %}
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3" style="position: relative;">
+      <a href="{{ billboard.url }}" {% if billboard.open_in_new_window %} target="_blank" {% endif %} style="text-decoration: none; color: black;">
+      {% if billboard.image %}
+      <img src="{{ billboard.image.url }}" class="img-fluid">
+      {% endif %}
+      <strong class="p-1" style="position: absolute; bottom: 40px; left: 12px; background-color: whitesmoke;">{{ billboard.title }}</strong>
+      <p style="font-style: italic">{{ billboard.description|truncatechars:35 }}</p>
+      </a>
+    </div>
+  {% endfor %}
+  </div>
+{% endif %} {% endblock billboards %}

@@ -1,0 +1,425 @@
+{% extends 'base.html' %} {% load static %}
+
+<!-- Meta Keywords -->
+{% block description %} <meta name="description" content="{{ content_page.meta_description }}" />
+{% endblock description %}
+<!--  -->
+{% block keywords %} <meta name="keywords" content="{{ content_page.meta_keywords }}" />
+{% endblock keywords %}
+
+<!-- Open Graph Tags -->
+{% block opengraph %}
+{% if content_page.title %}
+<meta property="og:title" content="{{ content_page.title }}"> {% endif %}
+<meta property="og:url" content="{{ domain }}/{{ request.get_full_path }}">
+{% if content_page.content %}
+<meta property="og:description" content="{{ content_page.content|striptags|truncatechars:160 }}"> {% endif %}
+{% if content_page.thumbnail %} 
+<meta property="og:image" content="{{ domain }}/{{ content_page.thumbnail.url }}"> {% endif %}
+{% endblock opengraph %}
+
+<!-- Title -->
+{% block title %} {{ content_page.title }} {% endblock title %}
+
+<!-- Navbar Logo -->
+{% block navlogo %} {% if content_page.logo_on_navbar %}
+<a class="navbar-brand px-0 mx-0" href="{% url 'mainpage' %}">
+  <img src="{{ content_page.logo_on_navbar.url }}" />
+</a>
+{% else %}
+<a class="navbar-brand" href="{% url 'mainpage' %}">
+  <img src="{% static 'img/navbrandtop25.png'%}" />
+</a>
+{% endif %} {% endblock navlogo %}
+
+<!-- Top Carousel -->
+{% block topcarousel %}
+<div class="slick-carousel">
+  {% for image in image_carousel %}
+    {% if image.image %}
+    <img src="{{ image.image.url }}" />
+    {% endif %}
+  {% endfor %}
+</div>
+{% endblock topcarousel %}
+
+<!-- Top Text -->
+{% block toptext %}
+<div class="container text-center my-3 py-3">
+  <h1 class="fw-bold">{{ content_page.title }}</h1>
+  <div class="url-content-style">
+    {{ content_page.content|safe }}
+  </div>
+</div>
+{% endblock toptext %}
+
+<!-- List Page -->
+{% block content %}
+<!-- List Section 1: Main Post Section -->
+{% if content_page.show_listing3 == True and main_list %}
+<div class="row d-flex p-3 mb-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  {% if content_page.listing_title3 %}
+  <h5 class="fw-bold">{{ content_page.listing_title3 }}</h5>
+  <hr style="width: 97%; margin: 0 auto;">
+  {% endif %}
+  {% for news in main_list %}
+  <div class="col-12 col-md-6 py-3 text-start">
+    <a href="{{ news.get_absolute_url }}">
+      {% if news.cover %}
+      <img class="thumbnail-img" src="{{ news.cover.url }}" />
+      {% else %}
+      <img class="thumbnail-img" src="{% static 'img/thumbnail-page.jpg' %}" />
+      {% endif %}
+    </a>
+  </div>
+  <div class="col-12 col-md-6 py-3" style="font-size: 14px">
+    <h5 class="fw-bold">
+      <a href="{{ news.get_absolute_url }}" class="text-decoration-none text-dark"
+        >{{ news.title }}</a
+      >
+    </h5>
+    {{ news.body|striptags|safe|truncatewords:25 }}
+  </div>
+  {% endfor %}
+  <!-- Nav Pagination -->
+  <nav class="nav-pagination">
+    <ul class="pagination justify-content-center">
+      {% if main_list.paginator.num_pages > 1 %}
+        {% if main_list.has_previous %}
+          <a class="btn pagination-btn my-2" href="?page1=1">First</a>
+          <a class="btn pagination-btn my-2" href="?page1={{ main_list.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in main_list.paginator.page_range %}
+          {% if main_list.number == num %}
+            <a class="btn btn-secondary my-2" href="?page1={{ num }}">{{ num }}</a>
+          {% elif num > main_list.number|add:'-3' and num < main_list.number|add:'3' %}
+            <a class="btn pagination-btn my-2" href="?page1={{ num }}">{{ num }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if main_list.has_next %}
+          <a class="btn pagination-btn my-2" href="?page1={{ main_list.next_page_number }}">Next</a>
+          <a class="btn pagination-btn my-2" href="?page1={{ main_list.paginator.num_pages }}">Last</a>
+        {% endif %}
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+{% endif %}
+
+{% if content_page.additional_content %}
+<div class="row d-flex p-3 url-content-style" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  {{ content_page.additional_content|safe }}
+</div>
+{% endif %}
+
+<!-- List Section 2: Interests -->
+{% if content_page.show_listing1 == True and interests %}
+<div class="row d-flex p-3 my-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  {% if content_page.listing_title1 %}
+  <div class="d-flex">
+    <h5 class="fw-bold">{{ content_page.listing_title1 }}</h5>
+  </div>
+  {% endif %}
+  {% include 'filter_interest.html' with total_interests=total_interests page_type=page_type %}
+  <div class="" id="filteredInterests">
+    <p class="ajaxLoader">Loading...</p>
+    <script type="text/javascript"> 
+      var pageType = "{{ page_type }}";
+      var defaultInterests = "{{ interests_id }}";
+      var currentInterests = "{{ interests_id }}";
+      var perPage = "{{ per_page }}";
+      var currentPage = "{{ current_page }}";
+    </script>
+    {% for interest in interests %}
+    <div class="d-md-flex interest-box">
+      <div class="col-12 col-md-6 py-3 text-start">
+        <div style="position: absolute; z-index: 1">
+          {% if interest.custom_overlay %}
+          <img src="{{ interest.custom_overlay.url }} " style="max-width: 125px" class="m-2" />
+          {% elif interest.hide_rating == False %}
+          <p
+            style="z-index: 1; position: absolute; padding-top: 10px"
+            class="text-light fs-5 fw-bold m-4 text-center"
+          >
+            TOP <span style="font-size: 28px">{{ interest.rating }}</span>
+          </p>
+          <img src="{% static 'img/overlay-icon-bg.png' %} " style="max-width: 125px" class="m-2" />
+          {% endif %}
+        </div>
+        <a href="{{ interest.get_absolute_url }}">
+          {% if interest.cover2 %}
+          <img src="{{ interest.cover2.url }}" class="thumbnail-img"/>
+          {% elif interest.cover %}
+          <img src="{{ interest.cover.url }}" class="thumbnail-img"/>
+          {% else %}
+          {% endif %}
+        </a>
+      </div>
+      <div class="col-12 col-md-6 py-3 ps-md-3" style="font-size: 14px">
+        <h5 class="fw-bold">
+          <a href="{{ interest.get_absolute_url }}" class="text-decoration-none text-dark"
+            >{{ interest.name }}</a
+          >
+        </h5>
+        <p>
+          {% if interest.info2 %}
+          <strong> {{ info2_label }} </strong> :
+          {% if interest.info2_url %}
+          <a href="{{ interest.info2_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info2 }}</a>
+          {% else %} {{ interest.info2 }} {% endif %}
+          <br /> {% endif %}
+          {% if interest.info5 %}
+          <strong> {{ info5_label }} </strong> :
+          {% if interest.info5_url %}
+          <a href="{{ interest.info5_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info5 }}</a>
+          {% else %} {{ interest.info5 }} {% endif %}
+          <br /> {% endif %}
+          {% if interest.info3 %}
+          <strong> {{ info3_label }} </strong> :
+          {% if interest.info3_url %}
+          <a href="{{ interest.info3_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info3 }}</a>
+          {% else %} {{ interest.info3 }} {% endif %}
+          <br /> {% endif %}
+          {% if interest.info1 %}
+          <strong> {{ info1_label }} </strong> :
+          {% if interest.info1_url %}
+          <a href="{{ interest.info1_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info1 }}</a>
+          {% else %} {{ interest.info1 }} {% endif %}
+          <br /> {% endif %}
+          {{ interest.text|safe|truncatewords:25 }}
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- Nav Pagination -->
+    <nav class="nav-pagination">
+      <ul class="pagination justify-content-center">
+        {% if num_pages > 1 %}
+          {% if current_page > 1 %}
+            <a class="btn pagination-btn my-2" onclick="loadMore('{{ 1 }}')">First</a>
+            <a class="btn pagination-btn my-2" onclick="loadMore('{{ current_page|add:-1 }}')">Previous</a>
+          {% endif %}
+  
+          {% for num in page_range %}
+            {% if current_page == num %}
+              <a class="btn btn-secondary my-2" onclick="loadMore('{{ num }}')">{{ num }}</a>
+            {% elif num > current_page|add:'-3' and num < current_page|add:'3' %}
+              <a class="btn pagination-btn my-2" onclick="loadMore('{{ num }}')">{{ num }}</a>
+            {% endif %}
+          {% endfor %}
+  
+          {% if current_page < num_pages %}
+            <a class="btn pagination-btn my-2" onclick="loadMore('{{ current_page|add:1 }}')">Next</a>
+            <a class="btn pagination-btn my-2" onclick="loadMore('{{ num_pages }}')">Last</a>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>
+{% endif %}
+
+<!-- List Section 3: List Section -->
+{% if content_page.show_listing2 == True and list_section %}
+<div class="row d-flex p-3 mb-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  {% if content_page.listing_title2 %}
+  <h5 class="fw-bold">{{ content_page.listing_title2 }}</h5>
+  <hr style="width: 97%; margin: 0 auto;">
+  {% endif %}
+  {% for post in list_section %}
+  <div class="col-12 col-md-6 py-3 text-start">
+    <a href="{{ post.get_absolute_url }}">
+      {% if post.cover %}
+      <img class="thumbnail-img" src="{{ post.cover.url }}" />
+      {% else %}
+      <img class="thumbnail-img" src="{% static 'img/thumbnail-page.jpg' %}" />
+      {% endif %}
+    </a>
+  </div>
+  <div class="col-12 col-md-6 py-3" style="font-size: 14px">
+    <h5 class="fw-bold">
+      <a href="{{ post.get_absolute_url }}" class="text-decoration-none text-dark"
+        >{{ post.title }}</a
+      >
+    </h5>
+    {{ post.body|striptags|safe|truncatewords:25 }}
+  </div>
+  {% endfor %}
+  <!-- Nav Pagination -->
+  <nav class="nav-pagination">
+    <ul class="pagination justify-content-center">
+      {% if list_section.paginator.num_pages > 1 %}
+        {% if list_section.has_previous %}
+          <a class="btn pagination-btn my-2" href="?page3=1">First</a>
+          <a class="btn pagination-btn my-2" href="?page3={{ list_section.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in list_section.paginator.page_range %}
+          {% if list_section.number == num %}
+            <a class="btn btn-secondary my-2" href="?page3={{ num }}">{{ num }}</a>
+          {% elif num > list_section.number|add:'-3' and num < list_section.number|add:'3' %}
+            <a class="btn pagination-btn my-2" href="?page3={{ num }}">{{ num }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if list_section.has_next %}
+          <a class="btn pagination-btn my-2" href="?page3={{ list_section.next_page_number }}">Next</a>
+          <a class="btn pagination-btn my-2" href="?page3={{ list_section.paginator.num_pages }}">Last</a>
+        {% endif %}
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+{% endif %}
+
+{% if content_page.display_list %}
+<!-- List Carousel on Small Screen -->
+<div class="d-block d-lg-none row d-flex mt-4">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      {% if content_page.carousel_title %}
+      <h5 class="fw-bold">{{ content_page.carousel_title }}</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      {% endif %}
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for post in list_carousel %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ post.get_absolute_url }}" style="text-decoration: none">
+                  {% if post.cover %}
+                  <img src="{{ post.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ post.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}
+
+<!-- Sidebar -->
+{% block sidebar %} {% if content_page.sidebar %}
+<div class="row p-3 text-center mb-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ content_page.sidebar|safe }}</div>
+</div>
+{% elif content_page.sidebar == "" and default_sidebar != "" %}
+<div class="row p-3 text-center mb-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_sidebar|safe }}</div>
+</div>
+{% endif %} {% endblock sidebar %}
+
+<!-- Ad Manager -->
+{% block admanager %} {% if content_page.ad_manager %}
+<div class="row p-3 text-center" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ content_page.ad_manager|safe }}</div>
+</div>
+{% elif content_page.ad_manager == "" and default_ad_manager != "" %}
+<div class="row p-3 text-center" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_ad_manager|safe }}</div>
+</div>
+{% endif %} {% endblock admanager %}
+
+{% block list_carousel %} {% if content_page.display_list %}
+<!-- List Carousel on Large Screen -->
+<div class="d-none d-lg-block row d-flex">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      {% if content_page.carousel_title %}
+      <h5 class="fw-bold">{{ content_page.carousel_title }}</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      {% endif %}
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for post in list_carousel %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ post.get_absolute_url }}" style="text-decoration: none">
+                  {% if post.cover %}
+                  <img src="{{ post.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ post.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock list_carousel %}
+
+<!-- Billboards -->
+{% block billboards %} {% if content_page.display_billboard %}
+<div class="row pt-4">
+  {% for billboard in billboards %}
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3" style="position: relative;">
+      <a href="{{ billboard.url }}" {% if billboard.open_in_new_window %} target="_blank" {% endif %} style="text-decoration: none; color: black;">
+      {% if billboard.image %}
+      <img src="{{ billboard.image.url }}" class="img-fluid">
+      {% endif %}
+      <strong class="p-1" style="position: absolute; bottom: 40px; left: 12px; background-color: whitesmoke;">{{ billboard.title }}</strong>
+      <p style="font-style: italic">{{ billboard.description|truncatechars:35 }}</p>
+      </a>
+    </div>
+  {% endfor %}
+  </div>
+{% endif %} {% endblock billboards %}

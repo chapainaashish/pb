@@ -1,0 +1,26 @@
+/* The side navigation menu */
+.locv101 {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+}
+
+/* Sidebar links */
+.locv101 a {
+    display: block;
+    color: black;
+    padding: 8px;
+    text-decoration: none;
+}
+
+/* Active/current link */
+.locv101 a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+/* Links on mouse-over */
+.locv101 a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}

@@ -1,0 +1,93 @@
+{% load static %}
+
+<p class="ajaxLoader">Loading...</p>
+<script type="text/javascript"> 
+	var currentInterests = "{{ interests_id }}";
+	var perPage = "{{ per_page }}";
+	var currentPage = "{{ current_page }}";
+</script>
+{% for interest in interests %}
+	<div class="d-md-flex interest-box">
+		<div class="col-12 col-md-6 py-3 text-start">
+			<div style="position: absolute; z-index: 1">
+				{% if interest.custom_overlay %}
+				<img src="{{ interest.custom_overlay.url }} " style="max-width: 100px" class="m-2" />
+				{% elif interest.hide_rating == False %}
+				<p
+					style="z-index: 1; position: absolute; padding-top: 10px"
+					class="text-light fs-5 fw-bold m-4 text-center"
+				>
+					TOP <span style="font-size: 28px">{{ interest.rating }}</span>
+				</p>
+				<img src="{% static 'img/overlay-icon-bg.png' %} " style="max-width: 125px" class="m-2" />
+				{% endif %}
+			</div>
+			<a href="{{ interest.get_absolute_url }}">
+				{% if interest.cover2 %}
+				<img src="{{ interest.cover2.url }}" class="thumbnail-img"/>
+				{% elif interest.cover %}
+				<img src="{{ interest.cover.url }}" class="thumbnail-img"/>
+				{% else %}
+				{% endif %}
+			</a>
+		</div>
+		<div class="col-12 col-md-6 py-3 ps-md-3" style="font-size: 14px">
+			<h5 class="fw-bold">
+				<a href="{{ interest.get_absolute_url }}" class="text-decoration-none text-dark"
+					>{{ interest.name }}</a
+				>
+			</h5>
+			<p>
+				{% if interest.info2 %}
+				<strong> {{ info2_label }} </strong> :
+				{% if interest.info2_url %}
+				<a href="{{ interest.info2_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info2 }}</a>
+				{% else %} {{ interest.info2 }} {% endif %}
+				<br /> {% endif %}
+				{% if interest.info5 %}
+				<strong> {{ info5_label }} </strong> :
+				{% if interest.info5_url %}
+				<a href="{{ interest.info5_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info5 }}</a>
+				{% else %} {{ interest.info5 }} {% endif %}
+				<br /> {% endif %}
+				{% if interest.info3 %}
+				<strong> {{ info3_label }} </strong> :
+				{% if interest.info3_url %}
+				<a href="{{ interest.info3_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info3 }}</a>
+				{% else %} {{ interest.info3 }} {% endif %}
+				<br /> {% endif %}
+				{% if interest.info1 %}
+				<strong> {{ info1_label }} </strong> :
+				{% if interest.info1_url %}
+				<a href="{{ interest.info1_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info1 }}</a>
+				{% else %} {{ interest.info1 }} {% endif %}
+				<br /> {% endif %}
+				{{ interest.text|safe|truncatewords:25 }}
+			</p>
+		</div>
+	</div>
+{% endfor %}
+<!-- Nav Pagination -->
+<nav class="nav-pagination">
+	<ul class="pagination justify-content-center">
+		{% if num_pages > 1 %}
+			{% if current_page > 1 %}
+				<a class="btn pagination-btn my-2" onclick="loadMore('{{ 1 }}')">First</a>
+				<a class="btn pagination-btn my-2" onclick="loadMore('{{ current_page|add:-1 }}')">Previous</a>
+			{% endif %}
+			
+			{% for num in page_range %}
+				{% if current_page == num %}
+					<a class="btn btn-secondary my-2" onclick="loadMore('{{ num }}')">{{ num }}</a>
+				{% elif num > current_page|add:'-3' and num < current_page|add:'3' %}
+					<a class="btn pagination-btn my-2" onclick="loadMore('{{ num }}')">{{ num }}</a>
+				{% endif %}
+			{% endfor %}
+
+			{% if current_page < num_pages %}
+				<a class="btn pagination-btn my-2" onclick="loadMore('{{ current_page|add:1 }}')">Next</a>
+				<a class="btn pagination-btn my-2" onclick="loadMore('{{ num_pages }}')">Last</a>
+			{% endif %}
+		{% endif %}
+	</ul>
+</nav>

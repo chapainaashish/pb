@@ -1,0 +1,183 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
+
+<!-- Meta Keywords -->
+{% block description %} <meta name="description" content="{{ interest.meta_description }}" />
+{% endblock description %}
+<!--  -->
+{% block keywords %} <meta name="keywords" content="{{ interest.meta_keywords }}" />
+{% endblock keywords %}
+
+<!-- Open Graph Tags -->
+{% block opengraph %}
+{% if interest.name %}
+<meta property="og:title" content="{{ interest.name }}"> {% endif %}
+<meta property="og:url" content="{{ domain }}/{{ request.get_full_path }}">
+{% if interest.text %}
+<meta property="og:description" content="{{ interest.text|striptags|truncatechars:160 }}"> {% endif %}
+{% if interest.cover2 %} 
+<meta property="og:image" content="{{ domain }}/{{ interest.cover2.url }}">
+{% elif interest.cover %}
+<meta property="og:image" content="{{ domain }}/{{ interest.cover.url }}"> {% endif %}
+{% endblock opengraph %}
+
+<!-- Title -->
+{% block title %} Edit {{ interest_label }} {% endblock title %}
+
+<!-- Top Carousel -->
+{% block topcarousel %}
+<div class="mt-5"></div>
+{% endblock topcarousel %}
+
+<!-- Footer Page -->
+{% block content %}
+<div class="row d-flex p-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <!-- Interest Form -->
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <h3>{{ interest_label }} Form</h3>
+    {{ interest_form.media }}
+    {% for field in interest_form %}
+      {{ field|as_crispy_field }}
+    {% endfor %}
+    <hr>
+    <input type="submit" value="Submit" class="btn btn-dark my-3" style="width: 100%" />
+  </form>
+</div>
+
+{% if interest.display_list %}
+<!-- List Carousel on Small Screen -->
+<div class="d-block d-lg-none row d-flex mt-4">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      <h5 class="fw-bold">Global Travel News</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for news in travel_news %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ news.get_absolute_url }}" style="text-decoration: none">
+                  {% if news.cover %}
+                  <img src="{{ news.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ news.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}
+
+<!-- Sidebar -->
+{% block sidebar %}
+<div class="row p-3 text-center mb-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_sidebar|safe }}</div>
+</div>
+{% endblock sidebar %}
+
+<!-- Ad Manager -->
+{% block admanager %}
+<div class="row p-3 text-center" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_ad_manager|safe }}</div>
+</div>
+{% endblock admanager %}
+
+{% block list_carousel %} {% if interest.display_list %}
+<!-- List Carousel on Large Screen -->
+<div class="d-none d-lg-block row d-flex">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      <h5 class="fw-bold">Global Travel News</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for news in travel_news %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ news.get_absolute_url }}" style="text-decoration: none">
+                  {% if news.cover %}
+                  <img src="{{ news.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ news.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock list_carousel %}
+
+<!-- Billboards -->
+{% block billboards %} {% if interest.display_billboard %}
+<div class="row pt-4">
+  {% for billboard in billboards %}
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3" style="position: relative;">
+      <a href="{{ billboard.url }}" {% if billboard.open_in_new_window %} target="_blank" {% endif %} style="text-decoration: none; color: black;">
+      {% if billboard.image %}
+      <img src="{{ billboard.image.url }}" class="img-fluid">
+      {% endif %}
+      <strong class="p-1" style="position: absolute; bottom: 40px; left: 12px; background-color: whitesmoke;">{{ billboard.title }}</strong>
+      <p style="font-style: italic">{{ billboard.description|truncatechars:35 }}</p>
+      </a>
+    </div>
+  {% endfor %}
+  </div>
+{% endif %} {% endblock billboards %}

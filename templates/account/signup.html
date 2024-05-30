@@ -1,0 +1,50 @@
+{% extends "account/base.html" %} {% load crispy_forms_tags %}
+<!--  -->
+{% load i18n %} {% load account socialaccount %}
+<!--  -->
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+<!--  -->
+{% block content %}
+<body style="
+  background-image: url('/static/img/signup-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;">
+  <div class="col-md-6 col-sm-12 p-4 my-5 border border-secondary-rounded shadow mx-auto" style="background-color: white;">
+    <h1>{% trans "Sign Up" %}</h1>
+
+    <form class="signup my-4" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %} {{ form|crispy }} {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="btn btn-primary w-100" type="submit">{% trans "Sign Up" %}</button>
+    </form>
+
+    <div
+      class="mb-4"
+      style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center"
+    >
+      <span style="font-size: 16px; background-color: white; padding: 0 10px"> or continue with </span>
+    </div>
+
+    {% get_providers as socialaccount_providers %} {% if socialaccount_providers %}
+
+    <div class="socialaccount_ballot">
+      <div class="socialaccount_providers">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+      </div>
+    </div>
+
+    {% include "socialaccount/snippets/login_extra.html" %} {% else %}
+    <p>
+      {% blocktrans %}If you have not created an account yet, then please
+      <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+    </p>
+    {% endif %}
+
+    <p class="my-3">
+      {% blocktrans %}Already have an account? Then please
+      <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+    </p>
+  </div>
+</body>
+{% endblock %}

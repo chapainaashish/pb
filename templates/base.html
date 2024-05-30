@@ -1,0 +1,665 @@
+{% load static %} {% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% block description %} {% endblock description %} {% block keywords %} {% endblock keywords %}
+    {% block opengraph %} {% endblock opengraph %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/locv101.css' %}" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static favicon %}" />
+    <!-- Slick Slider -->
+    <link href="https://kenwheeler.github.io/slick/slick/slick.css" rel="stylesheet" />
+    <link href="https://kenwheeler.github.io/slick/slick/slick-theme.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- Lightbox -->
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}" />
+    
+    <!-- Header Script -->
+    {{ header_script.script|safe }}
+    
+    <title>
+      {% block title %} {% endblock title %} | Top 25 {{ interest_label }}s - World's Best {{ interest_label }}s
+    </title>
+  </head>
+  <body>
+    <!-- Navbar Offcanvas (Double Navbar) -->
+    <nav class="navbar navbar-dark bg-dark fixed-top p-0" style="border-bottom: 2px solid #6c757d;">
+      <div class="container">
+        <!-- Navbar Logo -->
+        {% block navlogo %} {% if not navlogo %}
+        <a class="navbar-brand" href="{% url 'mainpage' %}">
+          <img src="{% static 'img/navbrandtop25.png'%}" />
+        </a>
+        {% endif %} {% endblock navlogo %}
+        <div class="navbar d-flex p-0">
+          <!-- Navbar 1 -->
+          <div class="d-flex my-auto d-none d-md-none d-lg-flex fw-bold align-items-center" style="font-size: 12px; height: 80px;">
+            {% for navbar in navbars %}
+            <!--  -->
+            {% if navbar.region.exists or navbar.page.exists %}
+            <div 
+              class="dropdown d-flex align-items-center px-3" style="height: 80px;" 
+              onclick="showHideMegaMenuItem('{{ navbar.id }}')"
+            >
+              <a
+                class="nav-item text-light dropdown-toggle"
+                href="#"
+                role="button"
+                aria-expanded="false"
+                style="text-decoration: none"
+              >
+                {{ navbar.title }}
+              </a>
+            </div>
+            {% else %}
+            <a
+              class="nav-item text-light px-3"
+              href="{{ navbar.link }}"
+              style="text-decoration: none"
+              >{{ navbar.title }}</a
+            >
+            {% endif %}
+            <!--  -->
+            {% endfor %}
+          </div>
+          <!-- Search Icon on Navbar -->
+          <button 
+            class="btn me-3 d-none d-md-none d-lg-inline-block"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            style="box-shadow: none"
+          >
+            <i class="bi bi-search light" style="color: white;"></i>
+          </button>
+          <!-- Hamburger Menu on Navbar -->
+          <button
+            class="navbar-toggler navbar-dark d-block px-0"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            style="height: 80px;"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Navbar 2 -->
+          <div
+            class="offcanvas offcanvas-end bg-dark"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <a class="navbar-brand" href="{% url 'mainpage' %}">
+                <img src="{% static 'img/navbrandtop25.png'%}" />
+              </a>
+              <button
+                type="button"
+                class="btn-close text-reset btn-close-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                {% for navbar in navbars %}
+                <!--  -->
+                {% if navbar.region.exists or navbar.page.exists %}
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle text-light"
+                    href="#"
+                    id="offcanvasNavbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside"
+                    aria-expanded="false"
+                  >
+                    {{ navbar.title }}
+                  </a>
+                  <ul class="dropdown-menu bg-dark" aria-labelledby="offcanvasNavbarDropdown">
+                    <!-- Region -->
+                    <!-- Level 1 Region -->
+                    {% with regions=navbar.region.all|sort_by:"navbar_order" %}
+                    {% for region1 in regions %}
+                    {% if region1.region_parent is None %}
+                    <li><hr class="dropdown-divider text-light my-1" /></li>
+                    <li class="my-3">
+                      <a class="lvl1 text-decoration-none ms-4" 
+                        href="{{ region1.get_absolute_url }}"
+                        style="text-transform: uppercase; font-size: 20px;">
+                        {{ region1.name }}
+                      </a>
+                      <span class="lvl1 dropdown-toggle"
+                        id="offcanvasRegionDropdown_{{ region1.pk }}"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        style="cursor: pointer;">
+                      </span>
+                      <!-- Level 2 Region -->
+                      <ul class="dropdown-menu bg-dark border-0 list-unstyled py-0" aria-labelledby="offcanvasRegionDropdown_{{ region1.pk }}">
+                      {% for region2 in regions %}
+                      {% if region2.region_parent == region1 %}
+                        <li class="my-3">
+                          <a href="{{ region2.get_absolute_url }}" class="text-light text-decoration-none ms-4" onclick="keepDropdownOpen(event)" style="font-size: 20px;">{{ region2.name }}</a>
+                          <!-- Level 3 Region -->
+                          <ul class="list-unstyled text-light">
+                          {% for region3 in regions %}
+                          {% if region3.region_parent == region2 %}
+                            <li class="my-3">
+                              <a href="{{ region3.get_absolute_url }}" class="text-decoration-none ms-4" style="color: #dcbc94; font-size: 20px;" onclick="keepDropdownOpen(event)">• {{ region3.name }}</a>
+                            </li>
+                            {% endif %} {% endfor %}
+                          </ul>
+                        </li>
+                        {% endif %} {% endfor %}
+                      </ul>
+                    </li>
+                    {% endif %} {% endfor %}
+                    {% endwith %}
+                    <!-- Page -->
+                    <!-- Level 1 Page -->
+                    {% with pages=navbar.page.all|sort_by:"navbar_order" %}
+                    {% for page1 in pages %}
+                    {% if page1.page_parent is None %}
+                    <li><hr class="dropdown-divider text-light my-1" /></li>
+                    <li class="my-3">
+                          <a class="lvl1 text-decoration-none ms-4"
+                        href="{{ page1.get_absolute_url }}"
+                        style="text-transform: uppercase; font-size: 20px;">
+                        {{ page1.title }}
+                      </a>
+                      <span class="lvl1 dropdown-toggle"
+                        id="offcanvasPageDropdown_{{ page1.pk }}"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        style="cursor: pointer;">
+                      </span>
+                      <!-- Level 2 Page -->
+                      <ul class="dropdown-menu bg-dark border-0 list-unstyled py-0" aria-labelledby="offcanvasPageDropdown_{{ page.pk }}">
+                      {% for page2 in pages %}
+                      {% if page2.page_parent == page1 %}
+                        <li class="my-3">
+                          <a href="{{ page2.get_absolute_url }}" class="text-light text-decoration-none ms-4" onclick="keepDropdownOpen(event)" style="font-size: 20px;">{{ page2.title }}</a>
+                          <!-- Level 3 Page -->
+                          <ul class="list-unstyled text-light">
+                          {% for page3 in pages %}
+                          {% if page3.page_parent == page2 %}
+                            <li class="my-3">
+                              <a href="{{ page3.get_absolute_url }}" class="text-decoration-none ms-4" style="color: #dcbc94; font-size: 20px;" onclick="keepDropdownOpen(event)">• {{ page3.title }}</a>
+                            </li>
+                            {% endif %} {% endfor %}
+                          </ul>
+                        </li>
+                        {% endif %} {% endfor %}
+                      </ul>
+                    </li>
+                    {% endif %} {% endfor %}
+                    {% endwith %}
+                  </ul>
+                </li>
+                {% else %}
+
+                <li class="nav-item">
+                  <a class="nav-link text-light" href="{{ navbar.link }}">{{ navbar.title }}</a>
+                </li>
+                {% endif %}
+                <!--  -->
+                {% endfor %}
+              </ul>
+              <form class="d-flex mt-3" method="POST" action="{% url 'searchpage' %}">
+                {% csrf_token %}
+                <input
+                  class="form-control me-2 d-inline"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  name="searched"
+                />
+                <button class="btn btn-outline-light" type="submit">
+                  <i class="bi bi-search"></i>
+                </button>
+              </form>
+              <div class="my-3" style="font-size: 18px">
+                {% if user.is_authenticated %}
+                <a
+                  href=""
+                  class="text-decoration-none"
+                  style="color: #cdcdcd"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#signoutModal"
+                  >Sign out |
+                </a>
+                <a
+                  href="{% url 'profile' %}"
+                  class="text-decoration-none"
+                  style="color: #cdcdcd"
+                  >My Profile</a
+                >
+                {% else %}
+                <a
+                  href=""
+                  class="text-decoration-none fst-italic"
+                  style="color: #cdcdcd"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#loginModal"
+                  >Sign in |</a
+                >
+                <a
+                  href=""
+                  class="text-decoration-none fst-italic"
+                  style="color: #cdcdcd"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#signupModal"
+                  >Not a member? Create an account</a
+                >
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mega Menu Content -->
+    {% for navbar in navbars %}
+    <div 
+      class="megamenu-item collapse w-100 bg-dark text-light" 
+      style="margin-top: 80px; z-index: 100; position: fixed;" 
+      id="nav-item{{ navbar.id }}"
+    >
+      <ul
+        class="container list-unstyled d-flex justify-content-between mx-auto py-0 my-0"
+        style="padding-left: 6.5rem; padding-right: 6.5rem;"
+      >
+        {% if navbar.region.exists %}
+        <!-- Region -->
+        <!-- Level 1 Region -->
+        {% for region1, regions_arr in regions.items %}
+        <li class="mx-2 py-3 w-100 list-region" id="{{region1.id}}">
+          <a
+            class="lvl1 fw-bold text-decoration-none"
+            href="{{ region1.get_absolute_url }}"
+            style="text-transform: uppercase; font-size: 12px;"
+          >
+            {{ region1.name }}
+          </a>
+          {% if region1.thumbnail %}
+          <img 
+            src="{{ region1.thumbnail.url }}" 
+            class="img-fluid my-2 mm-region-img" 
+            id="region-img{{region1.id}}" 
+          />
+          {% else %}
+          <img 
+            src="{% static 'img/thumbnail-page.jpg' %}" 
+            class="img-fluid my-2 mm-region-img" 
+            id="region-img{{region1.id}}"
+          />
+          {% endif %}
+        </li>
+        {% endfor %}
+        {% endif %}
+
+        {% if navbar.page.exists %}
+        <!-- Page -->
+        <!-- Level 1 Page -->
+        {% for page1, pages_arr in pages.items %}
+        <li class="mx-2 py-3 w-100 list-page" id="{{page1.id}}">
+          <a
+            class="lvl1 fw-bold text-decoration-none"
+            href="{{ page1.get_absolute_url }}"
+            style="text-transform: uppercase; font-size: 12px;"
+          >
+          {{ page1.title }}
+          </a>
+          {% if page1.thumbnail %}
+          <img 
+            src="{{ page1.thumbnail.url }}" 
+            class="img-fluid my-2 mm-page-img" 
+            id="page-img{{page1.id}}" 
+          />
+          {% else %}
+          <img 
+            src="{% static 'img/thumbnail-page.jpg' %}" 
+            class="img-fluid my-2 mm-page-img" 
+            id="page-img{{page1.id}}" 
+          />
+          {% endif %}
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+    {% endfor %}
+
+    <!-- Mega Menu Content Region -->
+    {% for region1, regions_arr in regions.items %}
+    <div 
+      class="collapse w-100 bg-dark text-light p-3" 
+      style="z-index: 100; position: fixed;" 
+      id="region-item{{ region1.id }}"
+      onmouseenter="showMegaMenuRegion('{{ region1.id }}')"
+      onmouseleave="hideMegaMenuRegion('{{ region1.id }}')"
+    >
+      <ul
+        class="container list-unstyled mx-auto"
+        style="padding-left: 6.5rem; padding-right: 6.5rem;"
+      >
+        <!-- Region -->
+        <div class="row ms-5">
+          {% for arr in regions_arr %}
+          <div class="col">
+            {% for region in arr %} {% if region.region_parent == region1 %}
+            <!-- Level 2 Region -->
+            <li class="mx-2 mt-2">
+              <a
+                href="{{ region.get_absolute_url }}"
+                class="text-light text-decoration-none"
+                style="font-size: 22px"
+                >{{ region.name }}</a
+              >
+            </li> 
+            {% else %}
+            <!-- Level 3 Region -->
+            <li class="mx-2 mt-2">
+              <a
+                href="{{ region.get_absolute_url }}"
+                class="text-decoration-none"
+                style="font-size: 18px; color: #dcbc94;"
+                >• {{ region.name }}</a
+              >
+            </li> 
+            {% endif %} {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </ul>
+    </div>
+    {% endfor %}
+
+    <!-- Mega Menu Content Page -->
+    {% for page1, pages_arr in pages.items %}
+    <div 
+      class="collapse w-100 bg-dark text-light p-3" 
+      style="z-index: 100; position: fixed;" 
+      id="page-item{{ page1.id }}"
+      onmouseenter="showMegaMenuPage('{{ page1.id }}')"
+      onmouseleave="hideMegaMenuPage('{{ page1.id }}')"
+    >
+      <ul
+        class="container list-unstyled mx-auto"
+        style="padding-left: 6.5rem; padding-right: 6.5rem;"
+      >
+        <!-- Page -->
+        <div class="row ms-5">
+          {% for arr in pages_arr %}
+          <div class="col">
+            {% for page in arr %} {% if page.page_parent == page1 %}
+            <!-- Level 2 Page -->
+            <li class="mx-2 mt-2">
+              <a
+                href="{{ page.get_absolute_url }}"
+                class="text-light text-decoration-none"
+                style="font-size: 22px"
+                >{{ page.title }}</a
+              >
+            </li> 
+            {% else %}
+            <!-- Level 3 Page -->
+            <li class="mx-2 mt-2">
+              <a
+                href="{{ page.get_absolute_url }}"
+                class="text-decoration-none"
+                style="font-size: 18px; color: #dcbc94;"
+                >• {{ page.title }}</a
+              >
+            </li> 
+            {% endif %} {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </ul>
+    </div>
+    {% endfor %}
+
+    <section class="top-carousel" style="padding-top: 80px;">
+      <!-- Top Carousel -->
+      {% block topcarousel %} {% endblock topcarousel %}
+    </section>
+    
+    <section class="main-content" style="background-color: white;">
+      <!-- Top Content -->
+      {% block toptext %} {% endblock toptext %}
+      <div class="container">
+        <div class="row d-flex">
+          <!-- Main Section -->
+          <div class="col-12 col-lg-8">{% block content %} {% endblock content %}</div>
+          <!-- Sidebar -->
+          <div class="sidebar col-12 col-lg-4 ps-lg-5 ps-md-0 ps-sm-0">
+            {% block breadcrumb %} {% endblock breadcrumb %}
+            <!-- Recent Reviews -->
+            {% block recent_reviews %} {% endblock recent_reviews %}
+            <!-- Sidebar -->
+            <div class="mt-lg-0 mt-4">
+              {% block sidebar %} {{ default_sidebar }} {% endblock sidebar %}
+            </div>
+            <!-- Ad Manager -->
+            <div class="mt-lg-0 mt-4">
+              {% block admanager %} {{ default_ad_manager }} {% endblock admanager %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <section>
+      {% block modal %} {% endblock modal %}
+    </section>
+
+    <!-- Login Form -->
+    <section>
+      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body p-5">
+              {% include 'ajax/login_popup.html' with form=login_form %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signup Form -->
+    <section>
+      <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body p-5">
+              {% include 'ajax/signup_popup.html' with form=signup_form %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signout Form -->
+    <section>
+      <div class="modal fade" id="signoutModal" tabindex="-1" aria-labelledby="signoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body p-5">
+              {% include 'ajax/signout_popup.html' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- List Carousel on Large Screen -->
+    <section>
+      <div class="container my-4">
+        {% block list_carousel %} {% endblock list_carousel %}
+      </div>
+    </section>
+
+    <!-- Billboards -->
+    <section style="background-color: whitesmoke;">
+      <div class="container">
+        {% block billboards %} {% endblock billboards %}
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center">
+      <div class="container py-4">
+        <div class="row py-3">
+          <!-- Footer Image 1 -->
+          <div class="col-lg-3 col-md-12 text-lg-start text-md-center mb-4 mb-lg-0">
+            <a href="#">
+              <img src="{% static 'img/footer.png' %}" />
+            </a>
+          </div>
+          <!-- Menu Footer 1 -->
+          <div class="d-flex justify-content-center col-lg-2 col-md-4 mb-4 mb-lg-0">
+            <ul class="list-unstyled text-md-start text-sm-center">
+              {% for footer in footers1 %} {% if footer.login_required and not user.is_authenticated %}
+              <li>
+                <a
+                  href=""
+                  class="text-white-50"
+                  style="text-decoration: none"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#loginModal"
+                  onclick="setSessionRedirectUrl('{{ footer.link }}')"
+                  >{{ footer.title }}</a
+                ><br />
+              </li>
+              {% else %}
+              <li>
+                <a
+                  href="{{ footer.link }}"
+                  {% if footer.new_window %} target="_blank" {% endif %}
+                  class="text-white-50"
+                  style="text-decoration: none"
+                  >{{ footer.title }}</a
+                ><br />
+              </li>
+              {% endif %} {% endfor %}
+            </ul>
+          </div>
+          <!-- Menu Footer 2 -->
+          <div class="d-flex justify-content-center col-lg-2 col-md-4 mb-4 mb-lg-0">
+            <ul class="list-unstyled text-md-start text-sm-center">
+              {% for footer in footers2 %} {% if footer.login_required and not user.is_authenticated %}
+              <li>
+                <a
+                  href=""
+                  class="text-white-50"
+                  style="text-decoration: none"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#loginModal"
+                  onclick="setSessionRedirectUrl('{{ footer.link }}')"
+                  >{{ footer.title }}</a
+                ><br />
+              </li>
+              {% else %}
+              <li>
+                <a
+                  href="{{ footer.link }}"
+                  {% if footer.new_window %} target="_blank" {% endif %}
+                  class="text-white-50"
+                  style="text-decoration: none"
+                  >{{ footer.title }}</a
+                ><br />
+              </li>
+              {% endif %} {% endfor %}
+            </ul>
+          </div>
+          <!-- Menu Footer 3 -->
+          <div class="d-flex justify-content-center col-lg-2 col-md-4 mb-4 mb-lg-0">
+            <ul class="list-unstyled text-md-start text-sm-center">
+              {% for footer in footers3 %} {% if footer.login_required and not user.is_authenticated %}
+              <li>
+                <a
+                  href=""
+                  class="text-white-50"
+                  style="text-decoration: none"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#loginModal"
+                  onclick="setSessionRedirectUrl('{{ footer.link }}')"
+                  >{{ footer.title }}</a
+                ><br />
+              </li>
+              {% else %}
+              <li>
+                <a
+                  href="{{ footer.link }}"
+                  {% if footer.new_window %} target="_blank" {% endif %}
+                  class="text-white-50"
+                  style="text-decoration: none"
+                  >{{ footer.title }}</a
+                ><br />
+              </li>
+              {% endif %} {% endfor %}
+            </ul>
+          </div>
+          <!-- Footer Image 2 -->
+          <div class="col-lg-3 col-md-12 text-lg-end text-md-center mb-4 mb-lg-0">
+            <a href="https://www.travelfoundation.org/">
+              <img src="{% static 'img/footer2.png' %}" class="px-3" />
+            </a>
+            <a href="https://www.travelindex.com/">
+              <img src="{% static 'img/footer3.png' %}" class="px-3" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="p-3 text-muted" style="background-color: rgba(0, 0, 0, 0.5)">
+        <div class="container text-start" style="font-size: 14px">
+          Copyright © <script>document.write(new Date().getFullYear())</script> - Top25{{ interest_label }}s.com & Travelindex. All Rights Reserved |
+          <a class="text-white" href="https://www.travelindex.com/" style="text-decoration: none"
+            >❤Travelindex Group</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Slick Slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
+    <!-- Lightbox -->
+    <script type="text/javascript" src="{% static 'js/lightbox.js' %}"></script>
+    
+    <script type="text/javascript" src="{% static 'js/myScript.js' %}"></script>
+  </body>
+</html>

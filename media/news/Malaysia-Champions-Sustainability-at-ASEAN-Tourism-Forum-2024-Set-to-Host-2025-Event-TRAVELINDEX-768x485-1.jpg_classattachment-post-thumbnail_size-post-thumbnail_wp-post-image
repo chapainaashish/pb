@@ -1,0 +1,628 @@
+	<!DOCTYPE html>
+		<!--[if IE 8]>
+	<html class="ie ie8" lang="en-US"> <![endif]-->
+	<!--[if IE 9]>
+	<html class="ie ie9" lang="en-US"> <![endif]-->
+	<!--[if gt IE 9]><!-->
+<html lang="en-US"> <!--<![endif]-->
+	<head>
+				<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="pingback" href="https://travelcommunication.net/xmlrpc.php"/>
+
+		<title>Page not found &#x2d; TravelCommunication.net &#8211; Global Travel News and Updates</title>
+
+<!-- The SEO Framework by Sybre Waaijer -->
+<meta name="robots" content="noindex,max-snippet:100,max-image-preview:standard,max-video-preview:-1" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://travelcommunication.net/#/schema/WebSite","url":"https://travelcommunication.net/","name":"TravelCommunication.net &#8211; Global Travel News and Updates","description":"Authoritative News Agency Focusing on Global Travel","inLanguage":"en-US","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://travelcommunication.net/search/{search_term_string}/"},"query-input":"required name=search_term_string"},"publisher":{"@type":"Organization","@id":"https://travelcommunication.net/#/schema/Organization","name":"TravelCommunication.net from Travelindex","url":"https://travelcommunication.net/"}},{"@type":"WebPage","name":"Page not found &#x2d; TravelCommunication.net &#8211; Global Travel News and Updates","inLanguage":"en-US","isPartOf":{"@id":"https://travelcommunication.net/#/schema/WebSite"},"breadcrumb":{"@type":"BreadcrumbList","@id":"https://travelcommunication.net/#/schema/BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":"https://travelcommunication.net/","name":"TravelCommunication.net &#8211; Global Travel News and Updates"},{"@type":"ListItem","position":2,"name":"Page not found"}]}}]}</script>
+<!-- / The SEO Framework by Sybre Waaijer | 9.75ms meta | 8.50ms boot -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="TravelCommunication.net - Global Travel News and Updates &raquo; Feed" href="https://travelcommunication.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="TravelCommunication.net - Global Travel News and Updates &raquo; Comments Feed" href="https://travelcommunication.net/comments/feed/" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/travelcommunication.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.4.3"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://travelcommunication.net/wp-includes/css/dist/block-library/style.min.css?ver=6.4.3' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='foobox-free-min-css' href='https://travelcommunication.net/wp-content/plugins/foobox-image-lightbox/free/css/foobox.free.min.css?ver=2.7.27' type='text/css' media='all' />
+<link rel='stylesheet' id='publisher-child-css' href='https://travelcommunication.net/wp-content/themes/publisher-child/style.css?ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='better-framework-main-fonts-css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CRoboto:400,500,400italic&#038;display=swap' type='text/css' media='all' />
+<script type="text/javascript" src="https://travelcommunication.net/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://travelcommunication.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="https://travelcommunication.net/wp-content/themes/publisher/includes/libs/better-framework/assets/js/html5shiv.min.js?ver=3.15.0" id="bf-html5shiv-js"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="https://travelcommunication.net/wp-content/themes/publisher/includes/libs/better-framework/assets/js/respond.min.js?ver=3.15.0" id="bf-respond-js"></script>
+<![endif]-->
+<script type="text/javascript" id="foobox-free-min-js-before">
+/* <![CDATA[ */
+/* Run FooBox FREE (v2.7.27) */
+var FOOBOX = window.FOOBOX = {
+	ready: true,
+	disableOthers: false,
+	o: {wordpress: { enabled: true }, images: { showCaptions:false }, excludes:'.fbx-link,.nofoobox,.nolightbox,a[href*="pinterest.com/pin/create/button/"]', affiliate : { enabled: false }, error: "Could not load this particular image"},
+	selectors: [
+		".gallery", ".wp-block-gallery", ".wp-caption", ".wp-block-image", "a:has(img[class*=wp-image-])", ".post a:has(img[class*=wp-image-])", ".foobox"
+	],
+	pre: function( $ ){
+		// Custom JavaScript (Pre)
+		
+	},
+	post: function( $ ){
+		// Custom JavaScript (Post)
+		
+		// Custom Captions Code
+		
+	},
+	custom: function( $ ){
+		// Custom Extra JS
+		
+	}
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://travelcommunication.net/wp-content/plugins/foobox-image-lightbox/free/js/foobox.free.min.js?ver=2.7.27" id="foobox-free-min-js"></script>
+<link rel="https://api.w.org/" href="https://travelcommunication.net/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://travelcommunication.net/xmlrpc.php?rsd" />
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://www.go-places.com/analytics/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+<script data-ad-client="ca-pub-5506477021633839" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>			<link rel="shortcut icon" href="https://travelcommunication.net/wp-content/uploads/2024/01/travel-communication-favicon-16.png">			<link rel="apple-touch-icon" href="https://travelcommunication.net/wp-content/uploads/2024/01/travel-communication-favicon-57.png">			<link rel="apple-touch-icon" sizes="114x114" href="https://travelcommunication.net/wp-content/uploads/2024/01/travel-communication-favicon-114.png"><meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org/",
+    "@type": "Organization",
+    "@id": "#organization",
+    "logo": {
+        "@type": "ImageObject",
+        "url": "https://travelcommunication.net/wp-content/uploads/2023/12/global-travel-news-by-travel-communication-and-travelindex.png"
+    },
+    "url": "https://travelcommunication.net/",
+    "name": "TravelCommunication.net - Global Travel News and Updates",
+    "description": "Authoritative News Agency Focusing on Global Travel"
+}</script>
+<script type="application/ld+json">{
+    "@context": "http://schema.org/",
+    "@type": "WebSite",
+    "name": "TravelCommunication.net - Global Travel News and Updates",
+    "alternateName": "Authoritative News Agency Focusing on Global Travel",
+    "url": "https://travelcommunication.net/"
+}</script>
+<link rel='stylesheet' id='bf-minifed-css-1' href='https://travelcommunication.net/wp-content/bs-booster-cache/a980b2989c93fd2f2127bdc835beec0e.css' type='text/css' media='all' />
+<link rel='stylesheet' id='7.11.0-1708565271' href='https://travelcommunication.net/wp-content/bs-booster-cache/cb1dea0e16c6765bd5f507df8bfe9e2c.css' type='text/css' media='all' />
+
+<!-- BetterFramework Head Inline CSS -->
+<style>
+.term-badges {
+    display: none;
+}
+
+.post-meta {
+display: none;
+}
+
+</style>
+<!-- /BetterFramework Head Inline CSS-->
+<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>	</head>
+
+<body class="error404 bs-theme bs-publisher bs-publisher-pure-magazine active-light-box active-top-line ltr close-rh page-layout-2-col page-layout-2-col-right full-width active-sticky-sidebar main-menu-sticky-smart main-menu-boxed active-ajax-search  bs-show-ha bs-show-ha-b wpb-js-composer js-comp-ver-6.8.0 vc_responsive bs-ll-a" dir="ltr">
+		<div class="main-wrap content-main-wrap">
+			<header id="header" class="site-header header-style-2 boxed" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
+
+				<div class="header-inner">
+			<div class="content-wrap">
+				<div class="container">
+					<div class="row">
+						<div class="row-height">
+							<div class="logo-col col-xs-4">
+								<div class="col-inside">
+									<div id="site-branding" class="site-branding">
+	<p  id="site-title" class="logo h1 img-logo">
+	<a href="https://travelcommunication.net/" itemprop="url" rel="home">
+					<img id="site-logo" src="https://travelcommunication.net/wp-content/uploads/2023/12/global-travel-news-by-travel-communication-and-travelindex.png"
+			     alt="Publisher"  />
+
+			<span class="site-title">Publisher - Authoritative News Agency Focusing on Global Travel</span>
+				</a>
+</p>
+</div><!-- .site-branding -->
+								</div>
+							</div>
+															<div class="sidebar-col col-xs-8">
+									<div class="col-inside">
+										<aside id="sidebar" class="sidebar" role="complementary" itemscope="itemscope" itemtype="https://schema.org/WPSideBar">
+											<div class="ujvlfzn ujvlfzn-loc-header_aside_logo ujvlfzn-align-right ujvlfzn-column-1 no-bg-box-model"><div id="ujvlfzn-32935-960456700" class="ujvlfzn-container ujvlfzn-type-custom_code " itemscope="" itemtype="https://schema.org/WPAdBlock" data-adid="32935" data-type="custom_code"><!-- Revive Adserver Asynchronous JS Tag - Generated with Revive Adserver v5.5.0 -->
+<ins data-revive-zoneid="23" data-revive-id="f8557c51292c01c46a06a3b608f746df"></ins>
+<script async src="//www.publicadvice.com/offers/www/delivery/asyncjs.php"></script><p class='ujvlfzn-caption ujvlfzn-caption-below'>- Advertisement -</p></div></div>										</aside>
+									</div>
+								</div>
+														</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="menu-main" class="menu main-menu-wrapper show-search-item menu-actions-btn-width-1" role="navigation" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement">
+	<div class="main-menu-inner">
+		<div class="content-wrap">
+			<div class="container">
+
+				<nav class="main-menu-container">
+					<ul id="main-navigation" class="main-menu menu bsm-pure clearfix">
+						<li id="menu-item-15451" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-3 better-anim-fade menu-item-15451"><a href="https://travelcommunication.net/category/hospitality/">Hospitality</a>
+<ul class="sub-menu">
+	<li id="menu-item-15491" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-47 better-anim-fade menu-item-15491"><a href="https://travelcommunication.net/category/hospitality/hotels/">Hotel &amp; Accommodation</a></li>
+	<li id="menu-item-15489" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-48 better-anim-fade menu-item-15489"><a href="https://travelcommunication.net/category/hospitality/dining-restaurants/">Dining &amp; Restaurants</a></li>
+	<li id="menu-item-15490" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-49 better-anim-fade menu-item-15490"><a href="https://travelcommunication.net/category/hospitality/entertainment-casinos/">Entertainment &amp; Casinos</a></li>
+</ul>
+</li>
+<li id="menu-item-15452" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-4 better-anim-fade menu-item-15452"><a href="https://travelcommunication.net/category/aviation/">Aviation</a>
+<ul class="sub-menu">
+	<li id="menu-item-15492" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-50 better-anim-fade menu-item-15492"><a href="https://travelcommunication.net/category/aviation/airlines/">Airlines</a></li>
+	<li id="menu-item-15493" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-51 better-anim-fade menu-item-15493"><a href="https://travelcommunication.net/category/aviation/airports/">Airports</a></li>
+	<li id="menu-item-15494" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-52 better-anim-fade menu-item-15494"><a href="https://travelcommunication.net/category/aviation/private-aviation/">Private Aviation</a></li>
+</ul>
+</li>
+<li id="menu-item-15453" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-5 better-anim-fade menu-item-15453"><a href="https://travelcommunication.net/category/destinations/">Destinations</a>
+<ul class="sub-menu">
+	<li id="menu-item-15496" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-53 better-anim-fade menu-item-15496"><a href="https://travelcommunication.net/category/destinations/asia/">Asia</a></li>
+	<li id="menu-item-15495" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-54 better-anim-fade menu-item-15495"><a href="https://travelcommunication.net/category/destinations/africa/">Africa</a></li>
+	<li id="menu-item-15500" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-55 better-anim-fade menu-item-15500"><a href="https://travelcommunication.net/category/destinations/middle-east/">Middle East</a></li>
+	<li id="menu-item-15499" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-56 better-anim-fade menu-item-15499"><a href="https://travelcommunication.net/category/destinations/europe/">Europe</a></li>
+	<li id="menu-item-15501" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-57 better-anim-fade menu-item-15501"><a href="https://travelcommunication.net/category/destinations/north-america/">North America</a></li>
+	<li id="menu-item-15497" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-58 better-anim-fade menu-item-15497"><a href="https://travelcommunication.net/category/destinations/caribbean/">Caribbean</a></li>
+	<li id="menu-item-15498" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-203 better-anim-fade menu-item-15498"><a href="https://travelcommunication.net/category/destinations/central-america-destinations/">Central America</a></li>
+	<li id="menu-item-15546" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-59 better-anim-fade menu-item-15546"><a href="https://travelcommunication.net/category/destinations/south-america/">South America</a></li>
+	<li id="menu-item-15502" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-60 better-anim-fade menu-item-15502"><a href="https://travelcommunication.net/category/destinations/oceania/">Oceania</a></li>
+</ul>
+</li>
+<li id="menu-item-15454" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-6 better-anim-fade menu-item-15454"><a href="https://travelcommunication.net/category/tours-travel/">Tours</a>
+<ul class="sub-menu">
+	<li id="menu-item-15504" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-61 better-anim-fade menu-item-15504"><a href="https://travelcommunication.net/category/tours-travel/tour-operators/">Tour Operators</a></li>
+	<li id="menu-item-15505" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-62 better-anim-fade menu-item-15505"><a href="https://travelcommunication.net/category/tours-travel/travel-agents/">Travel Agents</a></li>
+	<li id="menu-item-15541" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-63 better-anim-fade menu-item-15541"><a href="https://travelcommunication.net/category/tours-travel/luxury-travel/">Luxury Travel</a></li>
+	<li id="menu-item-15544" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-64 better-anim-fade menu-item-15544"><a href="https://travelcommunication.net/category/tours-travel/golf-travel/">Golf Travel</a></li>
+	<li id="menu-item-15543" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-65 better-anim-fade menu-item-15543"><a href="https://travelcommunication.net/category/tours-travel/adventure-travel/">Adventure Travel</a></li>
+	<li id="menu-item-15503" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-66 better-anim-fade menu-item-15503"><a href="https://travelcommunication.net/category/tours-travel/sports-tourism/">Sports Tourism</a></li>
+	<li id="menu-item-15545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-67 better-anim-fade menu-item-15545"><a href="https://travelcommunication.net/category/tours-travel/medical-tourism/">Medical Tourism</a></li>
+</ul>
+</li>
+<li id="menu-item-15455" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-9 better-anim-fade menu-item-15455"><a href="https://travelcommunication.net/category/events/">Events</a>
+<ul class="sub-menu">
+	<li id="menu-item-15508" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-68 better-anim-fade menu-item-15508"><a href="https://travelcommunication.net/category/events/meeting-incentive-convention/">MICE</a>
+	<ul class="sub-menu">
+		<li id="menu-item-15510" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-81 better-anim-fade menu-item-15510"><a href="https://travelcommunication.net/category/events/meeting-incentive-convention/convention-bureaus/">Convention Bureaus</a></li>
+		<li id="menu-item-15512" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-82 better-anim-fade menu-item-15512"><a href="https://travelcommunication.net/category/events/meeting-incentive-convention/exhibition-centers/">Exhibition Centres</a></li>
+		<li id="menu-item-15509" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-83 better-anim-fade menu-item-15509"><a href="https://travelcommunication.net/category/events/meeting-incentive-convention/conference-venues/">Conference Venues</a></li>
+		<li id="menu-item-15511" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-84 better-anim-fade menu-item-15511"><a href="https://travelcommunication.net/category/events/meeting-incentive-convention/event-management/">Event Management</a></li>
+		<li id="menu-item-15513" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-85 better-anim-fade menu-item-15513"><a href="https://travelcommunication.net/category/events/meeting-incentive-convention/mice-suppliers/">MICE Suppliers</a></li>
+	</ul>
+</li>
+	<li id="menu-item-15506" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-69 better-anim-fade menu-item-15506"><a href="https://travelcommunication.net/category/events/festivals/">Festivals</a></li>
+	<li id="menu-item-15551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-70 better-anim-fade menu-item-15551"><a href="https://travelcommunication.net/category/events/travel-fairs/">Travel &amp; Tourism Fairs</a></li>
+	<li id="menu-item-15550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-71 better-anim-fade menu-item-15550"><a href="https://travelcommunication.net/category/events/trade-fairs/">Trade Fairs</a></li>
+	<li id="menu-item-15548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-80 better-anim-fade menu-item-15548"><a href="https://travelcommunication.net/category/events/sporting-events/">Sporting Events</a>
+	<ul class="sub-menu">
+		<li id="menu-item-15547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-198 better-anim-fade menu-item-15547"><a href="https://travelcommunication.net/category/events/saling/">Sailing</a></li>
+		<li id="menu-item-15549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-343 better-anim-fade menu-item-15549"><a href="https://travelcommunication.net/category/events/tennis-events/">Tennis</a></li>
+	</ul>
+</li>
+	<li id="menu-item-15507" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-355 better-anim-fade menu-item-15507"><a href="https://travelcommunication.net/category/events/forum-meetings/">Forums &amp; Meetings</a></li>
+</ul>
+</li>
+<li id="menu-item-15456" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-10 better-anim-fade menu-item-15456"><a href="https://travelcommunication.net/category/people/">People</a>
+<ul class="sub-menu">
+	<li id="menu-item-15517" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-72 better-anim-fade menu-item-15517"><a href="https://travelcommunication.net/category/people/travel-experts/">Travel Experts</a></li>
+	<li id="menu-item-15516" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-73 better-anim-fade menu-item-15516"><a href="https://travelcommunication.net/category/people/travel-executives/">Travel Executives</a></li>
+	<li id="menu-item-15515" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-74 better-anim-fade menu-item-15515"><a href="https://travelcommunication.net/category/people/marketing-consultants/">Marketing Consultants</a></li>
+</ul>
+</li>
+<li id="menu-item-15457" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-13 better-anim-fade menu-item-15457"><a href="https://travelcommunication.net/category/travel-technology/">Technology</a>
+<ul class="sub-menu">
+	<li id="menu-item-15519" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-75 better-anim-fade menu-item-15519"><a href="https://travelcommunication.net/category/travel-technology/travel-technology-travel-technology/">Travel Technology</a></li>
+	<li id="menu-item-15522" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-76 better-anim-fade menu-item-15522"><a href="https://travelcommunication.net/category/travel-technology/online-travel-agents/">OTA</a></li>
+	<li id="menu-item-15518" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-77 better-anim-fade menu-item-15518"><a href="https://travelcommunication.net/category/travel-technology/social-media/">Social Media</a></li>
+	<li id="menu-item-15520" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-78 better-anim-fade menu-item-15520"><a href="https://travelcommunication.net/category/travel-technology/web-solutions/">Web Solutions</a></li>
+	<li id="menu-item-15521" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-79 better-anim-fade menu-item-15521"><a href="https://travelcommunication.net/category/travel-technology/booking-technology/">Booking Technology</a></li>
+</ul>
+</li>
+<li id="menu-item-15458" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-14 better-anim-fade menu-item-15458"><a href="https://travelcommunication.net/category/more-news/">more</a>
+<ul class="sub-menu">
+	<li id="menu-item-25785" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-11393 better-anim-fade menu-item-25785"><a href="https://travelcommunication.net/category/offers-and-deals/">Offers &amp; Deals</a></li>
+	<li id="menu-item-15524" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-7 better-anim-fade menu-item-15524"><a href="https://travelcommunication.net/category/more-news/cruises/">Cruises</a>
+	<ul class="sub-menu">
+		<li id="menu-item-15525" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-86 better-anim-fade menu-item-15525"><a href="https://travelcommunication.net/category/more-news/cruises/cruise-lines/">Cruise Lines</a></li>
+		<li id="menu-item-15527" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-87 better-anim-fade menu-item-15527"><a href="https://travelcommunication.net/category/more-news/cruises/cruise-ships/">Cruise Ships</a></li>
+		<li id="menu-item-15526" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-88 better-anim-fade menu-item-15526"><a href="https://travelcommunication.net/category/more-news/cruises/cruise-ports/">Cruise Ports</a></li>
+		<li id="menu-item-15529" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-89 better-anim-fade menu-item-15529"><a href="https://travelcommunication.net/category/more-news/cruises/river-cruises/">River Cruises</a></li>
+		<li id="menu-item-15528" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-90 better-anim-fade menu-item-15528"><a href="https://travelcommunication.net/category/more-news/cruises/ferries/">Ferries</a></li>
+	</ul>
+</li>
+	<li id="menu-item-15531" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-92 better-anim-fade menu-item-15531"><a href="https://travelcommunication.net/category/more-news/attractions/">Attractions</a></li>
+	<li id="menu-item-15553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-93 better-anim-fade menu-item-15553"><a href="https://travelcommunication.net/category/more-news/wellness/">Wellness</a></li>
+	<li id="menu-item-15532" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-96 better-anim-fade menu-item-15532"><a href="https://travelcommunication.net/category/more-news/lifestyle/">Lifestyle</a>
+	<ul class="sub-menu">
+		<li id="menu-item-15533" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-100 better-anim-fade menu-item-15533"><a href="https://travelcommunication.net/category/more-news/lifestyle/cars/">Cars</a></li>
+		<li id="menu-item-15535" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-101 better-anim-fade menu-item-15535"><a href="https://travelcommunication.net/category/more-news/lifestyle/watches/">Watches</a></li>
+		<li id="menu-item-15534" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-102 better-anim-fade menu-item-15534"><a href="https://travelcommunication.net/category/more-news/lifestyle/cigars/">Cigars</a></li>
+	</ul>
+</li>
+	<li id="menu-item-15555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-94 better-anim-fade menu-item-15555"><a href="https://travelcommunication.net/category/more-news/education/">Education</a></li>
+	<li id="menu-item-15536" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-95 better-anim-fade menu-item-15536"><a href="https://travelcommunication.net/category/more-news/organizations/">Organizations</a>
+	<ul class="sub-menu">
+		<li id="menu-item-23481" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-10348 better-anim-fade menu-item-23481"><a href="https://travelcommunication.net/category/more-news/organizations/international-organizations/un-world-tourism-organization-news/">UN Tourism News</a></li>
+		<li id="menu-item-24669" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-11027 better-anim-fade menu-item-24669"><a href="https://travelcommunication.net/category/more-news/organizations/international-organizations/world-travel-tourism-council-news/">WTTC News</a></li>
+		<li id="menu-item-31840" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-13599 better-anim-fade menu-item-31840"><a href="https://travelcommunication.net/category/more-news/organizations/pata-news/">PATA News</a></li>
+		<li id="menu-item-15540" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-191 better-anim-fade menu-item-15540"><a href="https://travelcommunication.net/category/more-news/organizations/tourism-organizations/">Tourism Boards &amp; CVB</a></li>
+		<li id="menu-item-15537" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-193 better-anim-fade menu-item-15537"><a href="https://travelcommunication.net/category/more-news/organizations/international-organizations/">International Organizations</a></li>
+		<li id="menu-item-15538" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-192 better-anim-fade menu-item-15538"><a href="https://travelcommunication.net/category/more-news/organizations/non-governmental-organizations/">NGO</a>
+		<ul class="sub-menu">
+			<li id="menu-item-27029" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-11784 better-anim-fade menu-item-27029"><a href="https://travelcommunication.net/category/more-news/organizations/non-governmental-organizations/world-economic-forum/">World Economic Forum</a></li>
+		</ul>
+</li>
+		<li id="menu-item-15539" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-431 better-anim-fade menu-item-15539"><a href="https://travelcommunication.net/category/more-news/organizations/sports-organization/">Sports Organizations</a></li>
+	</ul>
+</li>
+	<li id="menu-item-15530" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-91 better-anim-fade menu-item-15530"><a href="https://travelcommunication.net/category/more-news/transportation/">Transportation</a></li>
+	<li id="menu-item-15554" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-97 better-anim-fade menu-item-15554"><a href="https://travelcommunication.net/category/more-news/properties/">Properties</a></li>
+	<li id="menu-item-15552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-98 better-anim-fade menu-item-15552"><a href="https://travelcommunication.net/category/more-news/videos/">Videos</a></li>
+	<li id="menu-item-15542" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-99 better-anim-fade menu-item-15542"><a href="https://travelcommunication.net/category/more-news/world/">World</a></li>
+</ul>
+</li>
+					</ul><!-- #main-navigation -->
+											<div class="menu-action-buttons width-1">
+															<div class="search-container close">
+									<span class="search-handler"><i class="fa fa-search"></i></span>
+
+									<div class="search-box clearfix">
+										<form role="search" method="get" class="search-form clearfix" action="https://travelcommunication.net">
+	<input type="search" class="search-field"
+	       placeholder="Search..."
+	       value="" name="s"
+	       title="Search for:"
+	       autocomplete="off">
+	<input type="submit" class="search-submit" value="Search">
+</form><!-- .search-form -->
+									</div>
+								</div>
+														</div>
+										</nav><!-- .main-menu-container -->
+
+			</div>
+		</div>
+	</div>
+</div><!-- .menu -->
+	</header><!-- .header -->
+	<div class="rh-header clearfix light deferred-block-exclude">
+		<div class="rh-container clearfix">
+
+			<div class="menu-container close">
+				<span class="menu-handler"><span class="lines"></span></span>
+			</div><!-- .menu-container -->
+
+			<div class="logo-container rh-img-logo">
+				<a href="https://travelcommunication.net/" itemprop="url" rel="home">
+											<img src="https://travelcommunication.net/wp-content/uploads/2023/12/global-travel-news-by-travel-communication-and-travelindex.png"
+						     alt="TravelCommunication.net - Global Travel News and Updates"  />				</a>
+			</div><!-- .logo-container -->
+		</div><!-- .rh-container -->
+	</div><!-- .rh-header -->
+<nav role="navigation" aria-label="Breadcrumbs" class="bf-breadcrumb clearfix bc-top-style"><div class="container bf-breadcrumb-container"><ul class="bf-breadcrumb-items" itemscope itemtype="http://schema.org/BreadcrumbList"><meta name="numberOfItems" content="2" /><meta name="itemListOrder" content="Ascending" /><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="bf-breadcrumb-item bf-breadcrumb-begin"><a itemprop="item" href="https://travelcommunication.net" rel="home"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="bf-breadcrumb-item bf-breadcrumb-end"><span itemprop="name">404 Not Found</span><meta itemprop="item" content="https://travelcommunication.net/search/"/><meta itemprop="position" content="2" /></li></ul></div></nav>	<div class="content-wrap">
+		<main id="content" class="content-container">
+
+			<div class="container layout-1-col layout-no-sidebar">
+				<div class="row main-section">
+
+					<div class="content-column content-404">
+
+						<div class="row first-row">
+
+							<div class="col-lg-12 text-404-section">
+								<p class="text-404 heading-typo">404</p>
+							</div>
+
+							<div class="col-lg-12 desc-section">
+								<h1 class="title-404">Page Not Found!</h1>
+								<p>We're sorry, but we can't find the page you were looking for. It's probably some thing we've done wrong but now we know about it and we'll try to fix it. In the meantime, try one of these options:</p>
+								<div class="action-links clearfix">
+
+									<script type="text/javascript">
+                                        if (document.referrer) {
+                                            document.write('<div class="search-action-container"><a href="' + document.referrer + '"><i class="fa fa-angle-double-right"></i> Go to Previous Page</a></div>');
+                                        }
+									</script>
+
+									<div class="search-action-container">
+										<a href="https://travelcommunication.net/"><i
+													class="fa fa-angle-double-right"></i> Go to Homepage										</a>
+									</div>
+								</div>
+							</div>
+
+						</div><!-- .first-row -->
+
+						<div class="row second-row">
+							<div class="col-lg-12">
+								<div class="top-line">
+									<form role="search" method="get" class="search-form clearfix" action="https://travelcommunication.net">
+	<input type="search" class="search-field"
+	       placeholder="Search..."
+	       value="" name="s"
+	       title="Search for:"
+	       autocomplete="off">
+	<input type="submit" class="search-submit" value="Search">
+</form><!-- .search-form -->
+								</div>
+							</div>
+						</div><!-- .second-row -->
+
+					</div><!-- .content-column -->
+
+				</div><!-- .main-section -->
+			</div> <!-- .layout-1-col -->
+
+		</main><!-- main -->
+	</div><!-- .content-wrap -->
+
+	<footer id="site-footer" class="site-footer full-width">
+				<div class="copy-footer">
+			<div class="content-wrap">
+				<div class="container">
+						<div class="row">
+		<div class="col-lg-12">
+			<div id="menu-footer" class="menu footer-menu-wrapper" role="navigation" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement">
+				<nav class="footer-menu-container">
+					<ul id="footer-navigation" class="footer-menu menu clearfix">
+						<li id="menu-item-32999" class="menu-have-icon menu-icon-type-fontawesome menu-item menu-item-type-post_type menu-item-object-page menu-item-home better-anim-fade menu-item-32999"><a href="https://travelcommunication.net/"><i class="bf-icon  fa fa-home"></i>Home</a></li>
+<li id="menu-item-33117" class="menu-have-icon menu-icon-type-fontawesome menu-item menu-item-type-taxonomy menu-item-object-category menu-term-50 better-anim-fade menu-item-33117"><a href="https://travelcommunication.net/category/aviation/airlines/"><i class="bf-icon  fa fa-plane"></i>Airlines</a></li>
+<li id="menu-item-33113" class="menu-have-icon menu-icon-type-fontawesome menu-item menu-item-type-taxonomy menu-item-object-category menu-term-47 better-anim-fade menu-item-33113"><a href="https://travelcommunication.net/category/hospitality/hotels/"><i class="bf-icon  fa fa-hotel"></i>Hotels</a></li>
+<li id="menu-item-33119" class="menu-have-icon menu-icon-type-fontawesome menu-item menu-item-type-taxonomy menu-item-object-category menu-term-48 better-anim-fade menu-item-33119"><a href="https://travelcommunication.net/category/hospitality/dining-restaurants/"><i class="bf-icon  fa fa-glass"></i>Restaurants</a></li>
+<li id="menu-item-33115" class="menu-have-icon menu-icon-type-fontawesome menu-item menu-item-type-taxonomy menu-item-object-category menu-term-10 better-anim-fade menu-item-33115"><a href="https://travelcommunication.net/category/people/"><i class="bf-icon  fa fa-user-circle"></i>People</a></li>
+<li id="menu-item-33116" class="menu-have-icon menu-icon-type-fontawesome menu-item menu-item-type-taxonomy menu-item-object-category menu-term-75 better-anim-fade menu-item-33116"><a href="https://travelcommunication.net/category/travel-technology/travel-technology-travel-technology/"><i class="bf-icon  fa fa-fax"></i>Travel Technology</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+					<div class="row footer-copy-row">
+						<div class="copy-1 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							Copyright © 2024 - Travelindex Group - All Rights Reserved.						</div>
+						<div class="copy-2 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							TravelCommunication and <a href="https://www.travelindex.org">Travelindex Group</a>						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer><!-- .footer -->
+		</div><!-- .main-wrap -->
+			<span class="back-top"><i class="fa fa-arrow-up"></i></span>
+
+<script type="text/javascript" id="publisher-theme-pagination-js-extra">
+/* <![CDATA[ */
+var bs_pagination_loc = {"loading":"<div class=\"bs-loading\"><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><\/div>"};
+/* ]]> */
+</script>
+<script type="text/javascript" id="publisher-js-extra">
+/* <![CDATA[ */
+var publisher_theme_global_loc = {"page":{"boxed":"full-width"},"header":{"style":"style-2","boxed":"boxed"},"ajax_url":"https:\/\/travelcommunication.net\/wp-admin\/admin-ajax.php","loading":"<div class=\"bs-loading\"><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><\/div>","translations":{"tabs_all":"All","tabs_more":"More","lightbox_expand":"Expand the image","lightbox_close":"Close"},"lightbox":{"not_classes":""},"main_menu":{"more_menu":"enable"},"top_menu":{"more_menu":"enable"},"skyscraper":{"sticky_gap":30,"sticky":true,"position":""},"share":{"more":true},"refresh_googletagads":"1","get_locale":"en-US","notification":{"subscribe_msg":"By clicking the subscribe button you will never miss the new articles!","subscribed_msg":"You're subscribed to notifications","subscribe_btn":"Subscribe","subscribed_btn":"Unsubscribe"}};
+var publisher_theme_ajax_search_loc = {"ajax_url":"https:\/\/travelcommunication.net\/wp-admin\/admin-ajax.php","previewMarkup":"<div class=\"ajax-search-results-wrapper ajax-search-no-product ajax-search-fullwidth\">\n\t<div class=\"ajax-search-results\">\n\t\t<div class=\"ajax-ajax-posts-list\">\n\t\t\t<div class=\"clean-title heading-typo\">\n\t\t\t\t<span>Posts<\/span>\n\t\t\t<\/div>\n\t\t\t<div class=\"posts-lists\" data-section-name=\"posts\"><\/div>\n\t\t<\/div>\n\t\t<div class=\"ajax-taxonomy-list\">\n\t\t\t<div class=\"ajax-categories-columns\">\n\t\t\t\t<div class=\"clean-title heading-typo\">\n\t\t\t\t\t<span>Categories<\/span>\n\t\t\t\t<\/div>\n\t\t\t\t<div class=\"posts-lists\" data-section-name=\"categories\"><\/div>\n\t\t\t<\/div>\n\t\t\t<div class=\"ajax-tags-columns\">\n\t\t\t\t<div class=\"clean-title heading-typo\">\n\t\t\t\t\t<span>Tags<\/span>\n\t\t\t\t<\/div>\n\t\t\t\t<div class=\"posts-lists\" data-section-name=\"tags\"><\/div>\n\t\t\t<\/div>\n\t\t<\/div>\n\t<\/div>\n<\/div>","full_width":"1"};
+/* ]]> */
+</script>
+		<div class="rh-cover noscroll gr-8" >
+			<span class="rh-close"></span>
+			<div class="rh-panel rh-pm">
+				<div class="rh-p-h">
+											<span class="user-login">
+													<span class="user-avatar user-avatar-icon"><i class="fa fa-user-circle"></i></span>
+							Sign in						</span>				</div>
+
+				<div class="rh-p-b">
+										<div class="rh-c-m clearfix"></div>
+
+											<form role="search" method="get" class="search-form" action="https://travelcommunication.net">
+							<input type="search" class="search-field"
+							       placeholder="Search..."
+							       value="" name="s"
+							       title="Search for:"
+							       autocomplete="off">
+							<input type="submit" class="search-submit" value="">
+						</form>
+										</div>
+			</div>
+							<div class="rh-panel rh-p-u">
+					<div class="rh-p-h">
+						<span class="rh-back-menu"><i></i></span>
+					</div>
+
+					<div class="rh-p-b">
+						<div id="form_66671_" class="bs-shortcode bs-login-shortcode ">
+		<div class="bs-login bs-type-login"  style="display:none">
+
+					<div class="bs-login-panel bs-login-sign-panel bs-current-login-panel">
+								<form name="loginform"
+				      action="https://travelcommunication.net/wp-login.php" method="post">
+
+					
+					<div class="login-header">
+						<span class="login-icon fa fa-user-circle main-color"></span>
+						<p>Welcome, Login to your account.</p>
+					</div>
+					
+					<div class="login-field login-username">
+						<input type="text" name="log" id="form_66671_user_login" class="input"
+						       value="" size="20"
+						       placeholder="Username or Email..." required/>
+					</div>
+
+					<div class="login-field login-password">
+						<input type="password" name="pwd" id="form_66671_user_pass"
+						       class="input"
+						       value="" size="20" placeholder="Password..."
+						       required/>
+					</div>
+
+					
+					<div class="login-field">
+						<a href="https://travelcommunication.net/wp-login.php?action=lostpassword&redirect_to=https%3A%2F%2Ftravelcommunication.net%2Fwp-content%2Fuploads%2F2024%2F01%2FMalaysia-Champions-Sustainability-at-ASEAN-Tourism-Forum-2024-Set-to-Host-2025-Event-TRAVELINDEX-768x485-1.jpg%2522%2520class%3D%2522attachment-post-thumbnail%2520size-post-thumbnail%2520wp-post-image"
+						   class="go-reset-panel">Forget password?</a>
+
+													<span class="login-remember">
+							<input class="remember-checkbox" name="rememberme" type="checkbox"
+							       id="form_66671_rememberme"
+							       value="forever"  />
+							<label class="remember-label">Remember me</label>
+						</span>
+											</div>
+
+					
+					<div class="login-field login-submit">
+						<input type="submit" name="wp-submit"
+						       class="button-primary login-btn"
+						       value="Log In"/>
+						<input type="hidden" name="redirect_to" value="https://travelcommunication.net/wp-content/uploads/2024/01/Malaysia-Champions-Sustainability-at-ASEAN-Tourism-Forum-2024-Set-to-Host-2025-Event-TRAVELINDEX-768x485-1.jpg%22%20class=%22attachment-post-thumbnail%20size-post-thumbnail%20wp-post-image"/>
+					</div>
+
+									</form>
+			</div>
+
+			<div class="bs-login-panel bs-login-reset-panel">
+
+				<span class="go-login-panel"><i
+							class="fa fa-angle-left"></i> Sign in</span>
+
+				<div class="bs-login-reset-panel-inner">
+					<div class="login-header">
+						<span class="login-icon fa fa-support"></span>
+						<p>Recover your password.</p>
+						<p>A password will be e-mailed to you.</p>
+					</div>
+										<form name="lostpasswordform" id="form_66671_lostpasswordform"
+					      action="https://travelcommunication.net/wp-login.php?action=lostpassword"
+					      method="post">
+
+						<div class="login-field reset-username">
+							<input type="text" name="user_login" class="input" value=""
+							       placeholder="Username or Email..."
+							       required/>
+						</div>
+
+						
+						<div class="login-field reset-submit">
+
+							<input type="hidden" name="redirect_to" value=""/>
+							<input type="submit" name="wp-submit" class="login-btn"
+							       value="Send My Password"/>
+
+						</div>
+					</form>
+				</div>
+			</div>
+			</div>
+	</div>
+					</div>
+				</div>
+						</div>
+		<script type="text/javascript" src="https://travelcommunication.net/wp-content/plugins/better-adsmanager/js/advertising.min.js?ver=1.21.0" id="better-advertising-js"></script>
+<script type="text/javascript" id="rm_main_js-js-extra">
+/* <![CDATA[ */
+var rm_pre_data = {"ajax_url":"https:\/\/travelcommunication.net\/wp-admin\/admin-ajax.php","rm_nonce_field":"1cc80f21ef"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://travelcommunication.net/wp-content/plugins/icegram-rainmaker/lite/classes/../assets/js/main.js?ver=1.3.14" id="rm_main_js-js"></script>
+<script type="text/javascript" async="async" src="https://travelcommunication.net/wp-content/bs-booster-cache/8512fb7bdc0719b6c3a9fdc79136e71b.js?ver=6.4.3" id="bs-booster-js"></script>
+
+<script>
+var ujvlfzn=function(t){"use strict";return{init:function(){0==ujvlfzn.ads_state()&&ujvlfzn.blocked_ads_fallback()},ads_state:function(){return void 0!==window.better_ads_adblock},blocked_ads_fallback:function(){var a=[];t(".ujvlfzn-container").each(function(){if("image"==t(this).data("type"))return 0;a.push({element_id:t(this).attr("id"),ad_id:t(this).data("adid")})}),a.length<1||jQuery.ajax({url:'https://travelcommunication.net/wp-admin/admin-ajax.php',type:"POST",data:{action:"better_ads_manager_blocked_fallback",ads:a},success:function(a){var e=JSON.parse(a);t.each(e.ads,function(a,e){t("#"+e.element_id).html(e.code)})}})}}}(jQuery);jQuery(document).ready(function(){ujvlfzn.init()});
+
+</script>
+        <script type="text/javascript">
+            function AI_responsive_widget() {
+                jQuery('object.StefanoAI-youtube-responsive').each(function () {
+                    jQuery(this).parent('.fluid-width-video-wrapper').removeClass('fluid-width-video-wrapper').removeAttr('style').css('width', '100%').css('display', 'block');
+                    jQuery(this).children('.fluid-width-video-wrapper').removeClass('fluid-width-video-wrapper').removeAttr('style').css('width', '100%').css('display', 'block');
+                    var width = jQuery(this).parent().innerWidth();
+                    var maxwidth = jQuery(this).css('max-width').replace(/px/, '');
+                    var pl = parseInt(jQuery(this).parent().css('padding-left').replace(/px/, ''));
+                    var pr = parseInt(jQuery(this).parent().css('padding-right').replace(/px/, ''));
+                    width = width - pl - pr;
+                    if (maxwidth < width) {
+                        width = maxwidth;
+                    }
+                    var ratio = jQuery(this).attr('data-ratio');
+                    if (typeof ratio == 'undefined') {
+                        ratio = 16 / 9;
+                    }
+                    jQuery(this).css('width', width + "px");
+                    jQuery(this).css('height', width / ratio + "px");
+                    jQuery(this).find('iframe').css('width', width + "px");
+                    jQuery(this).find('iframe').css('height', width / ratio + "px");
+                });
+            }
+            if (typeof jQuery !== 'undefined') {
+                jQuery(document).ready(function () {
+                    setTimeout(function () {
+                        jQuery("div[data-iframe='StefanoAI-youtube-widget-responsive']").each(function () {
+                            var iframe = jQuery("<iframe></iframe>");
+                            jQuery.each(this.attributes, function () {
+                                if (this.name == 'data-iframe' || this.name == 'data-')
+                                    return;
+                                iframe.attr(this.name.replace(/^data-/, ''), this.value);
+                            });
+                            jQuery(iframe).insertAfter(jQuery(this));
+                            jQuery(this).remove();
+                        });
+                                        AI_responsive_widget();
+                    }, 50);
+                });
+                jQuery(window).resize(function () {
+                    AI_responsive_widget();
+                });
+            }
+                </script>
+        
+</body>
+</html>
+
+<!-- Page cached by LiteSpeed Cache 6.1 on 2024-03-02 14:47:33 -->

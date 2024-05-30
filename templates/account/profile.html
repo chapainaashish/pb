@@ -1,0 +1,169 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
+
+<!-- Title -->
+{% block title %} {{ user.username }} {% endblock title %}
+
+<!-- Top Carousel -->
+{% block topcarousel %}
+<div class="mt-5"></div>
+{% endblock topcarousel %}
+<script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
+
+<!-- Profile -->
+{% block content %}
+<div class="row p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="col-md-4 col-sm-12">
+    <img src="{{ user.profile.profile_pic.url }}" class="w-100" />
+    <h1 class="text-center" style="font-size: 2vw"><strong>{{ user.username }}</strong></h1>
+  </div>
+  <div class="col-md-8 col-sm-12">
+    <form method="POST" enctype="multipart/form-data" id="profile_form">
+      {% csrf_token %}
+      <h6><strong>Email:</strong></h6>
+      <p>{{ user.email }}</p>
+      <h6><strong>Profile Pic:</strong></h6>
+      <div id="div_id_profile_pic" class="mb-3">
+        <div class="mb-2">
+          <input
+            type="file"
+            name="profile_pic"
+            class="form-control"
+            accept="image/*"
+            id="id_profile_pic"
+          />
+        </div>
+      </div>
+      <h6><strong>Country:</strong></h6>
+      {{ form.country|as_crispy_field }}
+      <h6><strong>Gender:</strong></h6>
+      {{ form.gender|as_crispy_field }}
+      <h6><strong>Joined:</strong></h6>
+      <p>{{ user.date_joined }}</p>
+    </form>
+    <div class="d-flex">
+      <input class="btn btn-primary" type="submit" value="Save Profile" form="profile_form" name="profile_form" />
+      <a class="btn btn-danger ms-auto" href="{% url 'account_logout' %}" role="button">Sign Out</a>
+    </div>
+  </div>
+</div>
+
+<!-- Review and Rating -->
+<div class="row d-flex p-3 my-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="row p-3 align-items-center mt-0 pt-0 pe-0">
+    <h5 class="col-9 fw-bold ps-0 m-0">My Ratings & Reviews</h5>
+  </div>
+  <hr />
+  {% if review_and_rating %} {% for r in review_and_rating %}
+  <div class="row my-4">
+    <div class="col-3 text-center">
+      <img src="{{ r.user.profile.profile_pic.url }}" class="w-100" />
+      <strong>{{ r.user.username }}</strong>
+    </div>
+    <div class="col-9" style="word-wrap: break-word">
+      <h5 class="d-flex">
+        <strong>{{ r.title }}</strong><span class="ms-auto">{{ r.total_rating }}</span>
+      </h5>
+      <h6>{{ r.date_created }}</h6>
+      <details>
+        <summary>Read more...</summary>
+        <p>{{ r.review }}</p>
+      </details>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <h6><strong>Let's write some reviews!</strong></h6>
+  {% endif %}
+</div>
+
+<!-- Interests -->
+<div class="row d-flex p-3 my-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="row p-3 align-items-center mt-0 pt-0 pe-0">
+    <h5 class="col-9 fw-bold ps-0 m-0">{{ interest_label }}</h5>
+  </div>
+  <hr>
+  {% for interest in interests %}
+  <div class="row">
+    <div class="col-12">
+      <strong>{{ interest.name }}</strong> - 
+      <a href="{% url 'edit-interest' interest.slug %}">Edit</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Reviews Received -->
+<div class="row d-flex p-3 my-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="row p-3 align-items-center mt-0 pt-0 pe-0">
+    <h5 class="col-9 fw-bold ps-0 m-0">Reviews Received</h5>
+  </div>
+  <hr />
+  {% if rr_received %} {% for rr in rr_received %}
+  <div class="row my-4">
+    <div class="col-3 text-center">
+      <img src="{{ rr.user.profile.profile_pic.url }}" class="w-100" />
+      <strong>{{ rr.user.username }}</strong>
+    </div>
+    <div class="col-9" style="word-wrap: break-word">
+      <h5 class="d-flex">
+        <strong>{{ rr.title }}</strong><span class="ms-auto">{{ rr.total_rating }}</span>
+      </h5>
+      <h6>{{ rr.date_created }}</h6>
+      <details>
+        <summary>Read more...</summary>
+        <p>{{ rr.review }}</p>
+      </details>
+      <!-- Comment Form -->
+      {% if not rr.comment %}
+      <a class="fw-bold fst-italic" data-bs-toggle="modal" data-bs-target="#commentModal-{{ rr.id }}" style="cursor: pointer;">Reply</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <h6><strong>No Reviews Received</strong></h6>
+  {% endif %}
+</div>
+{% endblock content %}
+
+{% block modal %}
+<!-- Comment Modal -->
+<div class="modal fade" id="commentModal-{{ rr.id }}" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" value="{{ rr.id }}" name="rr_id">
+        {% for field in comment_form %}
+        {{ field.label }}
+        {{ field|as_crispy_field }}
+        {% endfor %}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="Comment" name="comment_form"></input>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock modal %}
+
+<!-- Sidebar -->
+{% block sidebar %} {% if content_page.sidebar %}
+<div class="row p-3 text-center mb-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ content_page.sidebar|safe }}</div>
+</div>
+{% elif content_page.sidebar == "" and default_sidebar != "" %}
+<div class="row p-3 text-center mb-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_sidebar|safe }}</div>
+</div>
+{% endif %} {% endblock sidebar %}
+
+<!-- Ad Manager -->
+{% block admanager %} {% if content_page.ad_manager %}
+<div class="row p-3 text-center" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ content_page.ad_manager|safe }}</div>
+</div>
+{% elif content_page.ad_manager == "" and default_ad_manager != "" %}
+<div class="row p-3 text-center" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_ad_manager|safe }}</div>
+</div>
+{% endif %} {% endblock admanager %}

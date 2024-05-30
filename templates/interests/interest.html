@@ -1,0 +1,611 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
+
+<!-- Meta Keywords -->
+{% block description %} <meta name="description" content="{{ interest.meta_description }}" />
+{% endblock description %}
+<!--  -->
+{% block keywords %} <meta name="keywords" content="{{ interest.meta_keywords }}" />
+{% endblock keywords %}
+
+<!-- Open Graph Tags -->
+{% block opengraph %}
+{% if interest.name %}
+<meta property="og:title" content="{{ interest.name }}"> {% endif %}
+<meta property="og:url" content="{{ domain }}/{{ request.get_full_path }}">
+{% if interest.text %}
+<meta property="og:description" content="{{ interest.text|striptags|truncatechars:160 }}"> {% endif %}
+{% if interest.cover2 %} 
+<meta property="og:image" content="{{ domain }}/{{ interest.cover2.url }}"> 
+{% elif interest.cover %}
+<meta property="og:image" content="{{ domain }}/{{ interest.cover.url }}"> {% endif %}
+{% endblock opengraph %}
+
+<!-- Title -->
+{% block title %} {{ interest.name }} {% endblock title %}
+
+<!-- Navbar Logo -->
+{% block navlogo %} {% if interest.logo_on_navbar %}
+<a class="navbar-brand px-0 mx-0" href="{% url 'mainpage' %}">
+  <img src="{{ interest.logo_on_navbar.url }}" />
+</a>
+{% elif interest.region.logo_on_navbar %}
+<a class="navbar-brand px-0 mx-0" href="{% url 'mainpage' %}">
+  <img src="{{ interest.region.logo_on_navbar.url }}" />
+</a>
+{% else %}
+<a class="navbar-brand" href="{% url 'mainpage' %}">
+  <img src="{% static 'img/navbrandtop25.png'%}" />
+</a>
+{% endif %} {% endblock navlogo %}
+
+<!-- Slick Slider Carousel -->
+{% block topcarousel %}
+<div class="mb-lg-5 mb-3">
+  {% if interest.top_slider %}
+  <div class="slick-carousel">
+    {% for image in yard_images %}
+      {% if image.image %}
+      <img src="{{ image.image.url }}" />
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endblock topcarousel %}
+
+<!-- Message -->
+{% block content %} {% if error_msg %}
+<div class="alert alert-danger">{{ error_msg }}</div>
+{% elif success_msg %}
+<div class="alert alert-success">{{ success_msg }}</div>
+{% endif %}
+
+<!-- Breadcrumb on Small Screen -->
+<nav class="d-block d-lg-none" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+  <ol class="breadcrumb" style="font-size: 13px">
+    <li class="breadcrumb-item">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+      ><i class="bi bi-house-fill"></i> Home</a
+      >
+    </li>
+    <li class="breadcrumb-item" aria-current="page">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+      >World</a
+      >
+    </li>
+    {% if interest.region.region_parent %}
+    <li class="breadcrumb-item" aria-current="page">
+      <a
+      href="{{interest.region.region_parent.get_absolute_url}}"
+      class="text-dark"
+      style="text-decoration: none"
+      >{{ interest.region.region_parent.name }}</a
+      >
+    </li>
+    {% endif %}
+    <li class="breadcrumb-item" aria-current="page">
+      <a href="{{interest.region.get_absolute_url}}" class="text-dark" style="text-decoration: none"
+      >{{ interest.region.name }}</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">{{ interest.name }}</li>
+  </ol>
+</nav>
+
+<!-- Interest Detail -->
+<div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <h1 class="fw-bold">{{ interest.name }}</h1>
+  <a class="text-decoration-none text-dark" href="#google-maps"
+    ><h5><i class="bi bi-geo-alt-fill"></i> {{ interest.info1 }}</h5></a
+  >
+  {% if interest.cover_slider and yard_cover_images %}
+  <div class="slick-carousel-yard-cover my-3">
+    {% for image in yard_cover_images %}
+      {% if image.image %}
+      <img src="{{ image.image.url }}" />
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% elif interest.cover2 %}
+  <img src="{{ interest.cover2.url }}" alt="" class="img-fluid py-3" />
+  {% elif interest.cover %}
+  <img src="{{ interest.cover.url }}" alt="" class="img-fluid py-3" />
+  {% endif %}
+
+  <div class="row d-flex align-items-center mb-3">
+    {% if interest.custom_overlay %}
+    <div
+      class="col-4"
+      style="
+      background: url('{{ interest.custom_overlay.url }}') no-repeat center;
+      background-size: contain;
+      height: 90%;
+    "
+    ></div>
+    <div class="col-8">
+      <p class="my-auto">
+        {% if interest.info2 %}
+        <strong> {{ info2_label }} </strong> : 
+        {% if interest.info2_url %}
+        <a href="{{ interest.info2_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info2 }}</a>
+        {% else %} {{ interest.info2 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.info5 %}
+        <strong> {{ info5_label }} </strong> : 
+        {% if interest.info5_url %}
+        <a href="{{ interest.info5_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info5 }}</a>
+        {% else %} {{ interest.info5 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.info3 %}
+        <strong> {{ info3_label }} </strong> : 
+        {% if interest.info3_url %}
+        <a href="{{ interest.info3_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info3 }}</a>
+        {% else %} {{ interest.info3 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.info4 %}
+        <strong> {{ info4_label }} </strong> : 
+        {% if interest.info4_url %}
+        <a href="{{ interest.info4_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info4 }}</a>
+        {% else %} {{ interest.info4 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.long_info1 %}
+        <strong> {{ long_info1_label }} </strong> : {{ interest.long_info1 }}
+        <br /> {% endif %}
+        {% if interest.web_text2 %}
+        <strong> {{ web2_info_label }} </strong> : 
+        <a href="{{ interest.website2 }}" target="_blank" style="text-decoration: none; border-bottom: 1px dashed #2d2d2d; color: #688c3b;">{{ interest.web_text2 }}</a> 
+        <br /> {% endif %}
+      </p>
+    </div>
+    {% elif interest.hide_rating == False %}
+    <div
+      class="col-4"
+      style="
+        background: url('{%static 'img/overlay-icon-bg.png' %}') no-repeat center;
+        background-size: 125px;
+        height: 120px;
+      "
+    >
+      <p class="text-light fs-5 fw-bold text-center mt-4">
+        TOP <br /><span style="font-size: 28px">{{ interest.rating }}</span>
+      </p>
+    </div>
+    <div class="col-8">
+      <p class="my-auto">
+        {% if interest.info2 %}
+        <strong> {{ info2_label }} </strong> : 
+        {% if interest.info2_url %}
+        <a href="{{ interest.info2_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info2 }}</a>
+        {% else %} {{ interest.info2 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.info5 %}
+        <strong> {{ info5_label }} </strong> : 
+        {% if interest.info5_url %}
+        <a href="{{ interest.info5_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info5 }}</a>
+        {% else %} {{ interest.info5 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.info3 %}
+        <strong> {{ info3_label }} </strong> : 
+        {% if interest.info3_url %}
+        <a href="{{ interest.info3_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info3 }}</a>
+        {% else %} {{ interest.info3 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.info4 %}
+        <strong> {{ info4_label }} </strong> : 
+        {% if interest.info4_url %}
+        <a href="{{ interest.info4_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info4 }}</a>
+        {% else %} {{ interest.info4 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.long_info1 %}
+        <strong> {{ long_info1_label }} </strong> : {{ interest.long_info1 }}
+        <br /> {% endif %}
+        {% if interest.web_text2 %}
+        <strong> {{ web2_info_label }} </strong> : 
+        <a href="{{ interest.website2 }}" target="_blank" style="text-decoration: none; border-bottom: 1px dashed #2d2d2d; color: #688c3b;">{{ interest.web_text2 }}</a> 
+        <br /> {% endif %}
+      </p>
+    </div>
+    {% else %}
+    <div class="col-12">
+      <p class="my-auto">
+        {% if interest.info2 %}
+        <strong> {{ info2_label }} </strong> : 
+        {% if interest.info2_url %}
+        <a href="{{ interest.info2_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info2 }}</a>
+        {% else %} {{ interest.info2 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.info5 %}
+        <strong> {{ info5_label }} </strong> : 
+        {% if interest.info5_url %}
+        <a href="{{ interest.info5_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info5 }}</a>
+        {% else %} {{ interest.info5 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.info3 %}
+        <strong> {{ info3_label }} </strong> : 
+        {% if interest.info3_url %}
+        <a href="{{ interest.info3_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info3 }}</a>
+        {% else %} {{ interest.info3 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.info4 %}
+        <strong> {{ info4_label }} </strong> : 
+        {% if interest.info4_url %}
+        <a href="{{ interest.info4_url }}" style="text-decoration: none; color: #688c3b">{{ interest.info4 }}</a>
+        {% else %} {{ interest.info4 }} {% endif %}
+        <br /> {% endif %}
+        {% if interest.long_info1 %}
+        <strong> {{ long_info1_label }} </strong> : {{ interest.long_info1 }}
+        <br /> {% endif %}
+        {% if interest.web_text2 %}
+        <strong> {{ web2_info_label }} </strong> : 
+        <a href="{{ interest.website2 }}" target="_blank" style="text-decoration: none; border-bottom: 1px dashed #2d2d2d; color: #688c3b;">{{ interest.web_text2 }}</a> 
+        <br /> {% endif %}
+      </p>
+    </div>
+    {% endif %}
+  </div>
+  <div class="url-content-style">
+    {{ interest.text|safe }}
+  </div>
+  <div class="row my-3">
+    <div class="col-md-6 col-sm-12">
+      <h5 class="fw-bold">Address:</h5>
+      {{ interest.address|safe }}
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <h5 class="fw-bold">Contact Information:</h5>
+      <span class="fw-bold">Phone: </span>{{ interest.number }} <br>
+      <span class="fw-bold">Email: </span> <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none; border-bottom: 1px dashed #2d2d2d; color: #688c3b;">Send a message</a> <br>
+      <span class="fw-bold">Web: </span> <a href="{{ interest.website }}" target="_blank" style="text-decoration: none; border-bottom: 1px dashed #2d2d2d; color: #688c3b;">{{ interest.web_text }}</a> <br>
+    </div>
+  </div>
+  <div id="google-maps">{{ interest.google_map|safe }}</div>
+</div>
+
+<!-- Review and Rating -->
+<div class="row p-4 d-flex my-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="row p-0 pb-3 align-items-center m-0">
+    <h5 class="col-9 fw-bold ps-0 m-0">Ratings & Reviews</h5>
+    {% if user.is_authenticated %}
+    <a class="col-3 btn btn-danger" href="/review{{ interest.get_absolute_url }}" role="button"
+      ><i class="bi bi-pencil-square"></i> Write a Review</a
+    > {% else %}
+    <a class="col-3 btn btn-danger" href="" role="button" data-bs-toggle="modal" data-bs-target="#loginModal" onclick="setSessionRedirectUrl('/review{{ interest.get_absolute_url }}')"
+      ><i class="bi bi-pencil-square"></i> Write a Review</a
+    > {% endif %}
+  </div>
+  <hr />
+  {% if review_and_rating %} {% for r in review_and_rating %}
+  <div class="row">
+    <div class="col-3 col-sm-2">
+      <div class="row text-center">
+        <img
+          class="col-12 px-0 mx-auto"
+          src="{{ r.user.profile.profile_pic.url }}"
+          style="height: 72px; width: 72px; border-radius: 50%; object-fit: cover"
+        />
+        <p class="col-12" style="font-size: 2vmin">{{ r.user.username }}</p>
+      </div>
+    </div>
+    <div class="col-7 col-sm-8" style="word-wrap: break-word; font-size: 14px">
+      <h5 class="d-flex">{{ r.title }}</h5>
+      {% if r.review|wordcount > 30 %}
+      <div class="half-content" id="half-{{ r.pk }}" style="display: block">
+        {{ r.review|safe|truncatewords:30|slice:"-2" }}
+        <a
+          id="{{ r.pk }}"
+          class="fw-bold text-dark"
+          onclick="moreLess(this)"
+          style="text-decoration: none; cursor: pointer"
+          ><i class="bi bi-caret-right-fill"></i>more...</a
+        >
+      </div>
+      <div class="full-content" id="full-{{ r.pk }}" style="display: none">
+        {{ r.review|safe }}
+        <a
+          id="{{ r.pk }}"
+          class="fw-bold text-dark"
+          onclick="moreLess(this)"
+          style="text-decoration: none; cursor: pointer"
+          ><i class="bi bi-caret-left-fill"></i>less</a
+        >
+      </div>
+      {% else %}
+      <p>{{ r.review|safe|linebreaks }}</p>
+      {% endif %}
+
+    </div>
+    <div class="col-2 fw-bold ps-0">
+      <img src="{% static 'img/quote_box.png' %}" style="width: 80px; position: absolute" />
+      <div id="total-rating-icon" style="position: absolute">
+        <p
+          style="
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            line-height: 16px;
+            margin-top: 12px;
+            margin-left: 16px;
+          "
+        >
+          {{ r.total_rating }} <br />
+          <span style="font-size: 10px">user rating</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr style="margin-top: 15px; height: 3px; background: repeating-linear-gradient(to right,black 0,black 3px,transparent 3px,transparent 15px)" />
+  <!-- Comment on Each Review -->
+  {% for comment in comments %} {% if comment.rr == r %}
+  <div class="row">
+    <div class="col-3 col-sm-2"></div>
+    <div class="col-8 col-sm-9 d-flex px-0">
+      <img
+        class="mx-2"
+        src="{{ comment.user.profile.profile_pic.url }}"
+        style="height: 56px; width: 56px; object-fit: cover; float: left;"
+      />
+      <div style="float: right;">
+        <h6>{{ comment.title }}</h6>
+        <p>{{ comment.body }}</p>
+      </div>
+    </div>
+  </div>  
+  <hr style="margin-top: 15px" />
+  {% endif %} {% endfor %}
+
+  {% endfor %} {% else %}
+  <h6><strong>Be the first to rate and write a review for {{ interest.name }} ... here</strong></h6>
+  {% endif %}
+</div>
+
+{% if interest.display_list %}
+<!-- List Carousel on Small Screen -->
+<div class="d-block d-lg-none row d-flex mt-4">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      {% if interest.carousel_title %}
+      <h5 class="fw-bold">{{ interest.carousel_title }}</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      {% endif %}
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for post in list_carousel %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ post.get_absolute_url }}" style="text-decoration: none">
+                  {% if post.cover %}
+                  <img src="{{ post.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ post.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}
+
+{% block modal %}
+<!-- Send Message Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Contact for {{ interest.name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          {% csrf_token %} {{ form|crispy }}
+          <input type="submit" value="Send message" class="btn btn-dark" style="width: 100%" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock modal %}
+
+{% block breadcrumb %}
+<!-- Breadcrumb on Large Screen -->
+<nav class="d-none d-lg-block" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+  <ol class="breadcrumb" style="font-size: 13px">
+    <li class="breadcrumb-item">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+        ><i class="bi bi-house-fill"></i> Home</a
+      >
+    </li>
+    <li class="breadcrumb-item" aria-current="page">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+        >World</a
+      >
+    </li>
+    {% if interest.region.region_parent %}
+    <li class="breadcrumb-item" aria-current="page">
+      <a
+        href="{{interest.region.region_parent.get_absolute_url}}"
+        class="text-dark"
+        style="text-decoration: none"
+        >{{ interest.region.region_parent.name }}</a
+      >
+    </li>
+    {% endif %}
+    <li class="breadcrumb-item" aria-current="page">
+      <a href="{{interest.region.get_absolute_url}}" class="text-dark" style="text-decoration: none"
+        >{{ interest.region.name }}</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">{{ interest.name }}</li>
+  </ol>
+</nav>
+{% endblock breadcrumb %}
+
+<!-- Recent Reviews -->
+{% block recent_reviews %}{% if recent_reviews %}
+<div class="row p-3 mt-lg-0 mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <h6 class="row fw-bold mb-3">
+    <div class="col-3">
+      <img src="{% static 'img/reviews_sidebar_icon.png'%}" style="height: 36px" />
+    </div>
+    <div class="col-9 px-0">Recent reviews of {{ interest.name }}</div>
+  </h6>
+  <hr />
+  {% for review in recent_reviews %}
+  <div class="text-start mb-3" style="font-size: 14px">
+    <div class="my-3">
+      <img
+        src="{{ review.user.profile.profile_pic.url }}"
+        style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover"
+      />
+      <span style="font-size: 18px">{{ review.title }}</span>
+    </div>
+    {% if review.review|wordcount > 20 %}
+    <div class="half-content-sidebar" id="half-{{ review.pk }}-sidebar" style="display: block">
+      {{ review.review|safe|truncatewords:20|slice:"-2" }}
+      <a
+        id="{{ review.pk }}"
+        class="fw-bold text-dark"
+        onclick="sidebarMoreLess(this)"
+        style="text-decoration: none; cursor: pointer"
+        ><i class="bi bi-caret-right-fill"></i>more...</a
+      >
+    </div>
+    <div class="full-content-sidebar" id="full-{{ review.pk }}-sidebar" style="display: none">
+      {{ review.review|safe }}
+      <a
+        id="{{ review.pk }}"
+        class="fw-bold text-dark"
+        onclick="sidebarMoreLess(this)"
+        style="text-decoration: none; cursor: pointer"
+        ><i class="bi bi-caret-left-fill"></i>less</a
+      >
+    </div>
+    {% else %}
+    <p>{{ r.review|safe|linebreaks }}</p>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}{% endblock recent_reviews %}
+
+<!-- Sidebar -->
+{% block sidebar %} {% if interest.sidebar %}
+<div class="row p-3 text-center mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ interest.sidebar|safe }}</div>
+</div>
+{% elif interest.sidebar == "" and default_sidebar != "" %}
+<div class="row p-3 text-center mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_sidebar|safe }}</div>
+</div>
+{% endif %} {% endblock sidebar %}
+
+<!-- Ad Manager -->
+{% block admanager %} {% if interest.ad_manager %}
+<div class="row p-3 text-center mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ interest.ad_manager|safe }}</div>
+</div>
+{% elif interest.ad_manager == "" and default_ad_manager != "" %}
+<div class="row p-3 text-center mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_ad_manager|safe }}</div>
+</div>
+{% endif %} {% endblock admanager %}
+
+{% block list_carousel %} {% if interest.display_list %}
+<!-- List Carousel on Large Screen -->
+<div class="d-none d-lg-block row d-flex">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      {% if interest.carousel_title %}
+      <h5 class="fw-bold">{{ interest.carousel_title }}</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      {% endif %}
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for post in list_carousel %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ post.get_absolute_url }}" style="text-decoration: none">
+                  {% if post.cover %}
+                  <img src="{{ post.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ post.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock list_carousel %}
+
+<!-- Billboards -->
+{% block billboards %} {% if interest.display_billboard %}
+<div class="row pt-4">
+  {% for billboard in billboards %}
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3" style="position: relative;">
+      <a href="{{ billboard.url }}" {% if billboard.open_in_new_window %} target="_blank" {% endif %} style="text-decoration: none; color: black;">
+      {% if billboard.image %}
+      <img src="{{ billboard.image.url }}" class="img-fluid">
+      {% endif %}
+      <strong class="p-1" style="position: absolute; bottom: 40px; left: 12px; background-color: whitesmoke;">{{ billboard.title }}</strong>
+      <p style="font-style: italic">{{ billboard.description|truncatechars:35 }}</p>
+      </a>
+    </div>
+  {% endfor %}
+  </div>
+{% endif %} {% endblock billboards %}

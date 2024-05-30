@@ -1,0 +1,371 @@
+{% load static %}
+
+<!-- Filter on Large Screen -->
+<div class="d-none d-sm-none d-lg-flex flex-wrap my-1 mx-1 p-0" style="width: 97%;" id="filter-selection">
+	<p class="fw-bold mx-1 my-auto" style="font-size: 12px;">Filter by:</p>
+	<div class="dropdown my-2 mx-1" id="dropdownRating" style="{% if activate_rating == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownRatingFilter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ rating_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownRatingFilter" style="width: 300px">
+			{% for rating in rating_filters %}
+			<li class="ratingItem" id="{{ rating.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="rating" value="{{ rating.id }}" id="ratingInput">
+					<label class="form-check-label" for="ratingInput">{{ rating.name }}</label><span class="count-interests"> ({{ rating.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% if page_type == "WORLD" %}
+	<div class="dropdown my-2 mx-1" id="dropdownWorld" style="{% if activate_world == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownWorldFilter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ world_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownWorldFilter" style="width: 300px">
+			{% for world in world_filters %}
+			<li class="worldItem" id="{{ world.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="world" value="{{ world.id }}" id="worldInput">
+					<label class="form-check-label" for="worldInput">{{ world.name }}</label><span class="count-interests"> ({{ world.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+	{% if page_type == "WORLD" or page_type == "COUNTRY" %}
+	<div class="dropdown my-2 mx-1" id="dropdownCountry" style="{% if activate_country == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownCountryFilter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ country_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownCountryFilter" style="width: 300px">
+			{% for country in country_filters %}
+			<li class="countryItem" id="{{ country.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="country" value="{{ country.id }}" id="countryInput">
+					<label class="form-check-label" for="countryInput">{{ country.name }}</label><span class="count-interests"> ({{ country.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+	{% if page_type == "WORLD" or page_type == "COUNTRY" or page_type == "REGION" %}
+	<div class="dropdown my-2 mx-1" id="dropdownRegion" style="{% if activate_region == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownRegionFilter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ region_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownRegionFilter" style="width: 300px">
+			{% for region in region_filters %}
+			<li class="regionItem" id="{{ region.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="region" value="{{ region.id }}" id="regionInput">
+					<label class="form-check-label" for="regionInput">{{ region.name }}</label><span class="count-interests"> ({{ region.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+	{% if page_type == "WORLD" or page_type == "COUNTRY" or page_type == "REGION" or page_type == "CITY" %}
+	<div class="dropdown my-2 mx-1" id="dropdownCity" style="{% if activate_city == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownCityFilter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ city_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownCityFilter" style="width: 300px">
+			{% for city in city_filters %}
+			<li class="cityItem" id="{{ city.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="city" value="{{ city.id }}" id="cityInput">
+					<label class="form-check-label" for="cityInput">{{ city.name }}</label><span class="count-interests"> ({{ city.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+	<div class="dropdown my-2 mx-1" id="dropdownSP1" style="{% if activate_sp1 == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownSP1Filter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ sp1_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownSP1Filter" style="width: 300px">
+			{% for sp1 in sp1_filters %}
+			<li class="sp1Item" id="{{ sp1.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="sp1" value="{{ sp1.id }}" id="sp1Input">
+					<label class="form-check-label" for="sp1Input">{{ sp1.name }}</label><span class="count-interests"> ({{ sp1.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="dropdown my-2 mx-1" id="dropdownSP2" style="{% if activate_sp2 == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownSP2Filter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ sp2_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownSP2Filter" style="width: 300px">
+			{% for sp2 in sp2_filters %}
+			<li class="sp2Item" id="{{ sp2.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="sp2" value="{{ sp2.id }}" id="sp2Input">
+					<label class="form-check-label" for="sp2Input">{{ sp2.name }}</label><span class="count-interests"> ({{ sp2.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="dropdown my-2 mx-1" id="dropdownSP3" style="{% if activate_sp3 == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownSP3Filter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ sp3_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownSP3Filter" style="width: 300px">
+			{% for sp3 in sp3_filters %}
+			<li class="sp3Item" id="{{ sp3.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="sp3" value="{{ sp3.id }}" id="sp3Input">
+					<label class="form-check-label" for="sp3Input">{{ sp3.name }}</label><span class="count-interests"> ({{ sp3.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="dropdown my-2 mx-1" id="dropdownFacility" style="{% if activate_facility == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownFacilityFilter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ facility_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownFacilityFilter" style="width: 300px">
+			{% for facility in facility_filters %}
+			<li class="facilityItem" id="{{ facility.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="facility" value="{{ facility.id }}" id="facilityInput">
+					<label class="form-check-label" for="facilityInput">{{ facility.name }}</label><span class="count-interests"> ({{ facility.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="dropdown my-2 mx-1" id="dropdownService" style="{% if activate_service == False %} display: none; {% endif %}">
+		<button class="btn btn-outline-secondary btn-sm px-2 dropdown-btn" type="button" id="dropdownServiceFilter" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="pe-3">{{ service_text }}<i class="fa-solid fa-sort-down ms-1" style="position: absolute; top: 20%;"></i></div>
+		</button>
+		<ul class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownServiceFilter" style="width: 300px">
+			{% for service in service_filters %}
+			<li class="serviceItem" id="{{ service.id }}">
+				<div class="form-check mx-3">
+					<input class="form-check-input filter-checkbox" type="checkbox" data-filter="service" value="{{ service.id }}" id="serviceInput">
+					<label class="form-check-label" for="serviceInput">{{ service.name }}</label><span class="count-interests"> ({{ service.count }})</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<i class="fa-solid fa-rotate-left fa-lg my-auto mx-1" style="cursor: pointer;" onclick="resetAllFilters()" data-bs-toggle="tooltip" title="Reset all filters"></i>
+</div>
+
+<!-- Filter on Small Screen -->
+<div class="d-block d-lg-none my-1 mx-1 p-0" style="width: 97%;">
+	<div class="d-flex text-center">
+		<h6 
+			class="my-3 w-100"
+			data-bs-toggle="offcanvas"
+			data-bs-target="#offcanvasFilter"
+			aria-controls="offcanvasFilter"
+			id="filters-mobile"
+		>
+			<i class="fa-solid fa-sliders mx-2"></i>Filters
+		</h6>
+	</div>
+	<div
+		class="offcanvas offcanvas-end bg-light"
+		tabindex="-1"
+		id="offcanvasFilter"
+		aria-labelledby="offcanvasFilterLabel"
+		style="width: 75%;"
+	>
+		<div class="offcanvas-header" style="color: #2a415e;">
+			<h5 class="my-0 fw-normal fs-6" style="cursor: pointer;" onclick="resetAllFilters()">Reset</h5>
+			<h5 class="my-0 fw-normal fs-6" id="offcanvasFilterLabel">Filters</h5>
+			<h5 class="my-0 fw-normal fs-6" data-bs-dismiss="offcanvas" style="cursor: pointer;">Apply</h5>
+		</div>
+		<hr class="p-0 m-0 text-secondary">
+		<div class="p-0 offcanvas-body h-100 d-flex flex-column">
+			<div class="my-3" id="dropdownRating" style="cursor: pointer; {% if activate_rating == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownRatingFilter" data-bs-toggle="collapse" data-bs-target="#collapseRatingFilter" aria-expanded="false">
+					<i class="{{ rating_icon }} me-3"></i>{{ rating_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseRatingFilter" id="collapseRatingFilter">
+					{% for rating in rating_filters %}
+					<li class="ratingItem" id="{{ rating.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="rating" value="{{ rating.id }}" id="ratingInput">
+							<label class="form-check-label" for="ratingInput">{{ rating.name }}</label><span class="count-interests"> ({{ rating.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_rating == False %} d-none {% endif %}">
+			{% if page_type == "WORLD" %}
+			<div class="my-3" id="dropdownWorld" style="cursor: pointer; {% if activate_world == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownWorldFilter" data-bs-toggle="collapse" data-bs-target="#collapseWorldFilter" aria-expanded="false">
+					<i class="{{ world_icon }} me-3"></i>{{ world_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseWorldFilter" id="collapseWorldFilter">
+					{% for world in world_filters %}
+					<li class="worldItem" id="{{ world.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="world" value="{{ world.id }}" id="worldInput">
+							<label class="form-check-label" for="worldInput">{{ world.name }}</label><span class="count-interests"> ({{ world.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_world == False %} d-none {% endif %}">
+			{% endif %}
+			{% if page_type == "WORLD" or page_type == "COUNTRY" %}
+			<div class="my-3" id="dropdownCountry" style="cursor: pointer; {% if activate_country == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownCountryFilter" data-bs-toggle="collapse" data-bs-target="#collapseCountryFilter" aria-expanded="false">
+					<i class="{{ country_icon }} me-3"></i>{{ country_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseCountryFilter" id="collapseCountryFilter">
+					{% for country in country_filters %}
+					<li class="countryItem" id="{{ country.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="country" value="{{ country.id }}" id="countryInput">
+							<label class="form-check-label" for="countryInput">{{ country.name }}</label><span class="count-interests"> ({{ country.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_country == False %} d-none {% endif %}">
+			{% endif %}
+			{% if page_type == "WORLD" or page_type == "COUNTRY" or page_type == "REGION" %}
+			<div class="my-3" id="dropdownRegion" style="cursor: pointer; {% if activate_region == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownRegionFilter" data-bs-toggle="collapse" data-bs-target="#collapseRegionFilter" aria-expanded="false">
+					<i class="{{ region_icon }} me-3"></i></i>{{ region_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseRegionFilter" id="collapseRegionFilter">
+					{% for region in region_filters %}
+					<li class="regionItem" id="{{ region.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="region" value="{{ region.id }}" id="regionInput">
+							<label class="form-check-label" for="regionInput">{{ region.name }}</label><span class="count-interests"> ({{ region.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_region == False %} d-none {% endif %}">
+			{% endif %}
+			{% if page_type == "WORLD" or page_type == "COUNTRY" or page_type == "REGION" or page_type == "CITY" %}
+			<div class="my-3" id="dropdownCity" style="cursor: pointer; {% if activate_city == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownCityFilter" data-bs-toggle="collapse" data-bs-target="#collapseCityFilter" aria-expanded="false">
+					<i class="{{ city_icon }} me-3"></i>{{ city_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseCityFilter" id="collapseCityFilter">
+					{% for city in city_filters %}
+					<li class="cityItem" id="{{ city.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="city" value="{{ city.id }}" id="cityInput">
+							<label class="form-check-label" for="cityInput">{{ city.name }}</label><span class="count-interests"> ({{ city.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_city == False %} d-none {% endif %}">
+			{% endif %}
+			<div class="my-3" id="dropdownSP1" style="cursor: pointer; {% if activate_sp1 == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownSP1Filter" data-bs-toggle="collapse" data-bs-target="#collapseSP1Filter" aria-expanded="false">
+					<i class="{{ sp1_icon }} me-3"></i>{{ sp1_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseSP1Filter" id="collapseSP1Filter">
+					{% for sp1 in sp1_filters %}
+					<li class="sp1Item" id="{{ sp1.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="sp1" value="{{ sp1.id }}" id="sp1Input">
+							<label class="form-check-label" for="sp1Input">{{ sp1.name }}</label><span class="count-interests"> ({{ sp1.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_sp1 == False %} d-none {% endif %}">
+			<div class="my-3" id="dropdownSP2" style="cursor: pointer; {% if activate_sp2 == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownSP2Filter" data-bs-toggle="collapse" data-bs-target="#collapseSP2Filter" aria-expanded="false">
+					<i class="{{ sp2_icon }} me-3"></i>{{ sp2_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseSP2Filter" id="collapseSP2Filter">
+					{% for sp2 in sp2_filters %}
+					<li class="sp2Item" id="{{ sp2.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="sp2" value="{{ sp2.id }}" id="sp2Input">
+							<label class="form-check-label" for="sp2Input">{{ sp2.name }}</label><span class="count-interests"> ({{ sp2.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_sp2 == False %} d-none {% endif %}">
+			<div class="my-3" id="dropdownSP3" style="cursor: pointer; {% if activate_sp3 == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownSP3Filter" data-bs-toggle="collapse" data-bs-target="#collapseSP3Filter" aria-expanded="false">
+					<i class="{{ sp3_icon }} me-3"></i>{{ sp3_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseSP3Filter" id="collapseSP3Filter">
+					{% for sp3 in sp3_filters %}
+					<li class="sp3Item" id="{{ sp3.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="sp3" value="{{ sp3.id }}" id="sp3Input">
+							<label class="form-check-label" for="sp3Input">{{ sp3.name }}</label><span class="count-interests"> ({{ sp3.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_sp3 == False %} d-none {% endif %}">
+			<div class="my-3" id="dropdownFacility" style="cursor: pointer; {% if activate_facility == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownFacilityFilter" data-bs-toggle="collapse" data-bs-target="#collapseFacilityFilter" aria-expanded="false">
+					<i class="{{ facility_icon }} me-3"></i>{{ facility_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseFacilityFilter" id="collapseFacilityFilter">
+					{% for facility in facility_filters %}
+					<li class="facilityItem" id="{{ facility.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="facility" value="{{ facility.id }}" id="facilityInput">
+							<label class="form-check-label" for="facilityInput">{{ facility.name }}</label><span class="count-interests"> ({{ facility.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_facility == False %} d-none {% endif %}">
+			<div class="my-3" id="dropdownService" style="cursor: pointer; {% if activate_service == False %} display: none; {% endif %}">
+				<div class="d-flex mx-3 collapse-btn collapsed" id="dropdownServiceFilter" data-bs-toggle="collapse" data-bs-target="#collapseServiceFilter" aria-expanded="false">
+					<i class="{{ service_icon }} me-3"></i>{{ service_text }}<i class="fa-solid fa-angle-down ms-auto my-auto"></i>
+				</div>
+				<ul class="collapse list-group scrollable-dropdown w-100 my-2" aria-labelledby="collapseServiceFilter" id="collapseServiceFilter">
+					{% for service in service_filters %}
+					<li class="serviceItem" id="{{ service.id }}">
+						<div class="form-check mx-3 my-2">
+							<input class="form-check-input filter-checkbox border-dark" type="checkbox" data-filter="service" value="{{ service.id }}" id="serviceInput">
+							<label class="form-check-label" for="serviceInput">{{ service.name }}</label><span class="count-interests"> ({{ service.count }})</span>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<hr class="p-0 m-0 text-secondary {% if activate_service == False %} d-none {% endif %}">
+			<div class="px-3 py-2 text-center text-white" style="cursor: pointer; background-color: #2a415e;" id="view-filtered-interests" data-bs-dismiss="offcanvas">View all {{ total_interests }} {{ interest_label }}s</div>
+			<div class="row flex-grow-1 overflow-auto m-0" style="background-color: #2a415e;"></div>
+		</div>
+	</div>
+</div>
+
+<!-- Show Selected Filter -->
+<div class="selectedFilters" id="selected-filters">
+	
+</div>

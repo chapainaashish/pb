@@ -1,0 +1,574 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
+
+<!-- Meta Keywords -->
+{% block description %} <meta name="description" content="{{ interest.meta_description }}" />
+{% endblock description %}
+<!--  -->
+{% block keywords %} <meta name="keywords" content="{{ interest.meta_keywords }}" />
+{% endblock keywords %}
+
+<!-- Open Graph Tags -->
+{% block opengraph %}
+{% if interest.name %}
+<meta property="og:title" content="{{ interest.name }}"> {% endif %}
+<meta property="og:url" content="{{ domain }}/{{ request.get_full_path }}">
+{% if interest.text %}
+<meta property="og:description" content="{{ interest.text|striptags|truncatechars:160 }}"> {% endif %}
+{% if interest.cover2 %} 
+<meta property="og:image" content="{{ domain }}/{{ interest.cover2.url }}">
+{% elif interest.cover %}
+<meta property="og:image" content="{{ domain }}/{{ interest.cover.url }}"> {% endif %}
+{% endblock opengraph %}
+
+<!-- Title -->
+{% block title %} {{ interest.name }} {% endblock title %}
+
+<!-- Navbar Logo -->
+{% block navlogo %} {% if interest.region.logo_on_navbar %}
+<a class="navbar-brand px-0 mx-0" href="{% url 'mainpage' %}">
+  <img src="{{ interest.region.logo_on_navbar.url }}" />
+</a>
+{% else %}
+<a class="navbar-brand" href="{% url 'mainpage' %}">
+  <img src="{% static 'img/navbrandtop25.png'%}" />
+</a>
+{% endif %} {% endblock navlogo %}
+
+<!-- Slick Slider Carousel -->
+{% block topcarousel %}
+<div class="mb-lg-5 mb-3">
+  {% if interest.top_slider %}
+  <div class="slick-carousel">
+    {% for image in yard_images %}
+      {% if image.image %}
+      <img src="{{ image.image.url }}" />
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endblock topcarousel %}
+
+{% block content %}
+{% if error_msg %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{ error_msg }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<!-- Breadcrumb on Small Screen  -->
+<nav class="d-block d-lg-none" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+  <ol class="breadcrumb" style="font-size: 13px">
+    <li class="breadcrumb-item">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+        ><i class="bi bi-house-fill"></i> Home</a
+      >
+    </li>
+    <li class="breadcrumb-item" aria-current="page">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+        >World</a
+      >
+    </li>
+    {% if interest.region.region_parent %}
+    <li class="breadcrumb-item" aria-current="page">
+      <a
+        href="{{interest.region.region_parent.get_absolute_url}}"
+        class="text-dark"
+        style="text-decoration: none"
+        >{{ interest.region.region_parent.name }}</a
+      >
+    </li>
+    {% endif %}
+    <li class="breadcrumb-item" aria-current="page">
+      <a href="{{interest.get_absolute_url}}" class="text-dark" style="text-decoration: none"
+        >{{ interest.region.name }}</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">{{ interest.name }}</li>
+  </ol>
+</nav>
+
+<!-- Interest Detail -->
+<div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <h1 class="fw-bold">{{ interest.name }}</h1>
+  <h5><i class="bi bi-geo-alt-fill"></i> {{ interest.info1 }}</h5>
+  {% if interest.cover_slider and yard_cover_images %}
+  <div class="slick-carousel-yard-cover my-3">
+    {% for image in yard_cover_images %}
+      {% if image.image %}
+      <img src="{{ image.image.url }}" />
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% elif interest.cover2 %}
+  <img src="{{ interest.cover2.url }}" alt="" class="img-fluid py-3" />
+  {% elif interest.cover %}
+  <img src="{{ interest.cover.url }}" alt="" class="img-fluid py-3" />
+  {% endif %}
+
+  <!-- Review and Rating Form -->
+  <h5 class="my-3">
+    <strong>Your rating and review are important. Thank you!</strong>
+  </h5>
+  <form method="POST" id="rr_form">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-8">
+        <label for="recommendedRange" class="form-label"
+          >{{ rr_form_label1 }}</label
+        >
+        <div class="row mx-0">
+          1
+          <div class="col-10">
+            <input
+              type="range"
+              class="form-range"
+              min="1"
+              max="20"
+              name="recommended"
+              value="{{form.recommended.value}}"
+              id="recommendedRange"
+              onchange="liveCalculation()"
+            />
+          </div>
+          20
+        </div>
+        <p class="text-danger">{{ form.recommended.errors.as_text }}</p>
+        <label for="valueRange" class="form-label">{{ rr_form_label2 }}</label>
+        <div class="row mx-0">
+          1
+          <div class="col-10">
+            <input
+              type="range"
+              class="form-range"
+              min="1"
+              max="20"
+              name="value"
+              value="{{form.value.value}}"
+              id="valueRange"
+              onchange="liveCalculation()"
+            />
+          </div>
+          20
+        </div>
+        <p class="text-danger">{{ form.value.errors.as_text }}</p>
+        <label for="serviceRange" class="form-label">{{ rr_form_label3 }}</label>
+        <div class="row mx-0">
+          1
+          <div class="col-10">
+            <input
+              type="range"
+              class="form-range"
+              min="1"
+              max="20"
+              name="service"
+              value="{{form.service.value}}"
+              id="serviceRange"
+              onchange="liveCalculation()"
+            />
+          </div>
+          20
+        </div>
+        <p class="text-danger">{{ form.service.errors.as_text }}</p>
+        <label for="cleanlinessRange" class="form-label">{{ rr_form_label4 }}</label>
+        <div class="row mx-0">
+          1
+          <div class="col-10">
+            <input
+              type="range"
+              class="form-range"
+              min="1"
+              max="20"
+              name="cleanliness"
+              value="{{form.cleanliness.value}}"
+              id="cleanlinessRange"
+              onchange="liveCalculation()"
+            />
+          </div>
+          20
+        </div>
+        <p class="text-danger">{{ form.cleanliness.errors.as_text }}</p>
+        <label for="locationRange" class="form-label">{{ rr_form_label5 }}</label>
+        <div class="row mx-0">
+          1
+          <div class="col-10">
+            <input
+              type="range"
+              class="form-range"
+              min="1"
+              max="20"
+              name="location"
+              value="{{form.location.value}}"
+              id="locationRange"
+              onchange="liveCalculation()"
+            />
+          </div>
+          20
+        </div>
+        <p class="text-danger">{{ form.location.errors.as_text }}</p>
+        <label for="sustainabilityRange" class="form-label">{{ rr_form_label6 }}</label>
+        <div class="row mx-0">
+          1
+          <div class="col-10">
+            <input
+              type="range"
+              class="form-range"
+              min="1"
+              max="20"
+              name="sustainability"
+              value="{{form.sustainability.value}}"
+              id="sustainabilityRange"
+              onchange="liveCalculation()"
+            />
+          </div>
+          20
+        </div>
+        <p class="text-danger">{{ form.sustainability.errors.as_text }}</p>
+      </div>
+      <div class="col-4 col-md-3 p-0 my-auto">
+        <div
+          class="text-center fw-bold border border-secondary rounded-3 mx-auto"
+          style="max-width: fit-content"
+          id="your-rating"
+        >
+          <p class="m-3 mb-0" style="font-size: 18px">Your Rating</p>
+          <p class="m-2 mt-0" id="totalRating" style="color: orangered; font-size: 7vmin"></p>
+          <p class="m-0 py-1" style="background-color: #20669b; color: white; font-size: 18px">
+            {{ interest_label_capital }}
+          </p>
+          <script>
+            window.onload = function(){
+              liveCalculation();
+            }
+          </script>
+        </div>
+        <div class="mx-auto" id="text-below-your-rating">
+          <p class="my-2" style="font-size: 12px">
+            Your personal overall rating on a scale from 1 to 20 where 20 is the best rating
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="my-3">
+      <label>Title of Your Review:</label><br />
+      <input class="form-control" name="title" id="titleValue" placeholder="Title your review here" value="{% if form.title.value %}{{ form.title.value }}{% endif %}" />
+      <p class="text-danger">{{ form.title.errors.as_text }}</p>
+    </div>
+    <div class="my-3">
+      <label>Your Review:</label><br />
+      <textarea class="form-control" name="review" cols="40" rows="5" id="reviewValue" placeholder="Write your review here">{% if form.review.value %}{{ form.review.value }}{% endif %}</textarea>
+      <p class="text-danger">{{ form.review.errors.as_text }}</p>
+    </div>
+    <div class="form-check my-3">
+      <input class="form-check-input" type="checkbox" id="beforeSubmit" required />
+      <label class="form-check-label" for="beforeSubmit">
+        I certify that this review and rating are based on my assessment and is my genuine opinion
+        of this company or business. I have no personal or business relationship with this
+        establishment, and have not been offered any incentive or payment originating from this
+        establishment to write this review.
+      </label>
+    </div>
+    {{ form.captcha|as_crispy_field }}
+  </form>
+  <div class="text-center row justify-content-evenly">
+    <input type="submit" value="SUBMIT" class="btn btn-dark col-5" form="rr_form" />
+    <!-- Button trigger Modal Preview -->
+    <button
+      type="button"
+      class="btn btn-dark col-5"
+      data-bs-toggle="modal"
+      data-bs-target="#preview"
+      onclick="preview()"
+    >
+      Preview your rating and review
+    </button>
+  </div>
+  <p class="p-3 mt-5">
+    Please note by submitting your review and rating you agree to the following:
+    <br /><br />
+    By submitting a review and rating you grant this website and its affiliates the right to use,
+    control, share, reproduce, translate, distribute, manage, publicly display and remove your
+    review and rating You are fully responsible for the content of your review and of your rating.
+    Once you submit your review and rating, you transfer ownership and control to us and it is
+    publicly accessible. We may also share your review with our partners, members or listed
+    businesses in order that they can address any issues raised in your review or through your
+    rating but we will never share your personal details. We are not responsible for the business or
+    entity reviewed deducing your identity from the content of your review and rating and contacting
+    you direct. You accept our review and rating terms of use and privacy policy as they apply to
+    your review and rating. We reserve the right to reject reviews and ratings that do not meet our
+    guidelines, in particular we can't publish your review and rating if it includes, but not
+    limited to: specific rates or prices, personal insults or profanity, any personal details or any
+    personally identifiable information, commercial website addresses or phone numbers.
+  </p>
+</div>
+
+{% if interest.display_list %}
+<!-- List Carousel on Small Screen -->
+<div class="d-block d-lg-none row d-flex mt-4">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      <h5 class="fw-bold">Global Travel News</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for news in travel_news %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ news.get_absolute_url }}" style="text-decoration: none">
+                  {% if news.cover %}
+                  <img src="{{ news.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ news.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}
+
+{% block modal %}
+<!-- Modal Preview -->
+<div
+class="modal fade"
+id="preview"
+tabindex="-1"
+aria-labelledby="previewLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="previewLabel">Preview</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body row">
+      <div class="col-3">
+        <img src="{{ request.user.profile.profile_pic.url }}" alt="" class="w-100" />
+        <p>{{ request.user.username }}</p>
+      </div>
+      <div class="col-9 text-start" style="word-wrap: break-word">
+        <h5 class="d-flex">
+          <strong><span id="titlePreview"></span></strong>
+          <span class="ms-auto" id="totalRatingPreview"></span>
+        </h5>
+        <p id="reviewPreview">{{ form.review.value }}</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <input type="submit" value="SUBMIT" class="btn btn-dark" form="rr_form" />
+    </div>
+  </div>
+</div>
+</div>
+{% endblock modal %}
+
+{% block breadcrumb %}
+<!-- Breadcrumb on Large Screen  -->
+<nav class="d-none d-lg-block" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+  <ol class="breadcrumb" style="font-size: 13px">
+    <li class="breadcrumb-item">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+        ><i class="bi bi-house-fill"></i> Home</a
+      >
+    </li>
+    <li class="breadcrumb-item" aria-current="page">
+      <a href="{% url 'mainpage' %}" class="text-dark" style="text-decoration: none"
+        >World</a
+      >
+    </li>
+    {% if interest.region.region_parent %}
+    <li class="breadcrumb-item" aria-current="page">
+      <a
+        href="{{interest.region.region_parent.get_absolute_url}}"
+        class="text-dark"
+        style="text-decoration: none"
+        >{{ interest.region.region_parent.name }}</a
+      >
+    </li>
+    {% endif %}
+    <li class="breadcrumb-item" aria-current="page">
+      <a href="{{interest.get_absolute_url}}" class="text-dark" style="text-decoration: none"
+        >{{ interest.region.name }}</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">{{ interest.name }}</li>
+  </ol>
+</nav>
+{% endblock breadcrumb %}
+
+<!-- Recent Reviews -->
+{% block recent_reviews %}{% if recent_reviews %}
+<div class="row p-3 mt-lg-0 mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <h6 class="row fw-bold mb-3">
+    <div class="col-3">
+      <img src="{% static 'img/reviews_sidebar_icon.png'%}" style="height: 36px" />
+    </div>
+    <div class="col-9 px-0">Recent reviews of {{ interest.name }}</div>
+  </h6>
+  <hr />
+  {% for review in recent_reviews %}
+  <div class="text-start mb-3" style="font-size: 14px">
+    <div class="my-3">
+      <img
+        src="{{ review.user.profile.profile_pic.url }}"
+        style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover"
+      />
+      <span style="font-size: 18px">{{ review.title }}</span>
+    </div>
+    {% if review.review|wordcount > 20 %}
+    <div class="half-content-sidebar" id="half-{{ review.pk }}-sidebar" style="display: block">
+      {{ review.review|safe|truncatewords:20|slice:"-2" }}
+      <a
+        id="{{ review.pk }}"
+        class="fw-bold text-dark"
+        onclick="sidebarMoreLess(this)"
+        style="text-decoration: none; cursor: pointer"
+        ><i class="bi bi-caret-right-fill"></i>more...</a
+      >
+    </div>
+    <div class="full-content-sidebar" id="full-{{ review.pk }}-sidebar" style="display: none">
+      {{ review.review|safe }}
+      <a
+        id="{{ review.pk }}"
+        class="fw-bold text-dark"
+        onclick="sidebarMoreLess(this)"
+        style="text-decoration: none; cursor: pointer"
+        ><i class="bi bi-caret-left-fill"></i>less</a
+      >
+    </div>
+    {% else %}
+    <p>{{ r.review|safe|linebreaks }}</p>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}{% endblock recent_reviews %}
+
+<!-- Sidebar -->
+{% block sidebar %} {% if interest.sidebar %}
+<div class="row p-3 text-center mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ interest.sidebar|safe }}</div>
+</div>
+{% elif interest.sidebar == "" and default_sidebar != "" %}
+<div class="row p-3 text-center mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_sidebar|safe }}</div>
+</div>
+{% endif %} {% endblock sidebar %}
+
+<!-- Ad Manager -->
+{% block admanager %} {% if interest.ad_manager %}
+<div class="row p-3 text-center mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ interest.ad_manager|safe }}</div>
+</div>
+{% elif interest.ad_manager == "" and default_ad_manager != "" %}
+<div class="row p-3 text-center mt-4" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+  <div class="text-start">{{ default_ad_manager|safe }}</div>
+</div>
+{% endif %} {% endblock admanager %}
+
+{% block list_carousel %} {% if interest.display_list %}
+<!-- List Carousel on Large Screen -->
+<div class="d-none d-lg-block row d-flex">
+  <div class="col col-md-12 col-lg-8">
+    <div class="row d-flex p-3" style="border: 1px solid rgba(0, 0, 0, 0.1)">
+      <h5 class="fw-bold">Global Travel News</h5>
+      <hr style="width: 97%; margin: 0 auto; margin-bottom: 10px;">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="row d-flex">
+              {% for news in travel_news %}
+              <div class="col-6 col-md-4 py-2 text-center">
+                <a href="{{ news.get_absolute_url }}" style="text-decoration: none">
+                  {% if news.cover %}
+                  <img src="{{ news.cover.url }}" style="max-height: 150px" class="img-fluid"/>
+                  {% else %}
+                  <img src="{% static 'img/thumbnail-page.jpg' %}" style="max-height: 150px" class="img-fluid" />
+                  {% endif %}
+                  <h6 class="fw-bold text-start text-dark my-2">{{ news.title }}</h6>
+                </a>
+              </div>
+              {% if forloop.counter|divisibleby:6 and not forloop.last%}
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="row d-flex py-3">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock list_carousel %}
+
+<!-- Billboards -->
+{% block billboards %} {% if interest.display_billboard %}
+<div class="row pt-4">
+  {% for billboard in billboards %}
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3" style="position: relative;">
+      <a href="{{ billboard.url }}" {% if billboard.open_in_new_window %} target="_blank" {% endif %} style="text-decoration: none; color: black;">
+      {% if billboard.image %}
+      <img src="{{ billboard.image.url }}" class="img-fluid">
+      {% endif %}
+      <strong class="p-1" style="position: absolute; bottom: 40px; left: 12px; background-color: whitesmoke;">{{ billboard.title }}</strong>
+      <p style="font-style: italic">{{ billboard.description|truncatechars:35 }}</p>
+      </a>
+    </div>
+  {% endfor %}
+  </div>
+{% endif %} {% endblock billboards %}

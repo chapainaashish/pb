@@ -1,0 +1,59 @@
+{% load static %} {% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Autoblogging</title>
+  </head>
+  <body>
+    <section>
+      <div class="container my-3">
+        <h1 class="text-center my-3">Autoblogging</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">Title</th>
+              <th scope="col">URL</th>
+              <th scope="col">Last Update</th>
+              <th scope="col">Category</th>
+              <th scope="col">Items</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for source in sources %}
+            <tr>
+              <th scope="row">{{ source.id }}</th>
+              <td>{{ source.title }}</td>
+              <td>{{ source.url }}</td>
+              <td>{{ source.last_updated }}</td>
+              <td>{{ source.category }}</td>
+              <td class="text-center">{{ source.items }}</td>
+              <td>
+                <a class="btn btn-success" href="{% url 'news-pull' source.id %}">Pull</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
